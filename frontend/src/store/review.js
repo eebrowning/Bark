@@ -84,10 +84,11 @@ export const thunkDeleteReview = (reviewId) => async dispatch => {
         method: 'delete',
     })
     if (res.ok) {
-        const review = await res.json();
+        // const review = await res.json();
+        const review = await res;
         console.log('Thunk, delete review: ', review)
         dispatch(actionDeleteReview(review))
-        return review;
+        // return review;
     }
 }
 
@@ -121,7 +122,7 @@ const reviewsReducer = (state = iState, action) => {
         case DELETE_REVIEW:
             console.log(action, 'action...DELETE_review...')
             newState = { ...state }
-            console.log('...DELETE_review... how to refresh list?'); //don't see this.
+            console.log('...DELETE_review... how to refresh list?');
             delete newState[action.reviewId]
             return newState;
         default:
