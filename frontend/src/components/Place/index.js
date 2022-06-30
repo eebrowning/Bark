@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { thunkDeletePlace, thunkGetAllPlaces } from "../../store/place";
 import { thunkGetPlace } from "../../store/place";
 import { thunkGetAllReviews } from "../../store/review";
+import PlaceReviews from "../PlaceReviews";
 
 const Place = () => {
     let history = useHistory();
@@ -16,15 +17,8 @@ const Place = () => {
 
     const place = useSelector((state) => state.placesState[placeId]);
 
-
-    // const place = places.find(place => place.id === placeId);
-    // console.log('PLACES STATE, on single view:', places)
-    // const place = useSelector((state) => Object.values(state.placesState))[0];
-
-
     useEffect(() => {
         dispatch(thunkGetPlace(placeId));
-        dispatch(thunkGetAllReviews())
         // console.log('dispatched to thunkGetPlace')
     }, [dispatch]);
 
@@ -51,6 +45,7 @@ const Place = () => {
                 <span id={`place-box-${place.id}`}>
                     <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
                     <h2 id={`place-${place.id}`}>{place.name}</h2>
+                    <h6>{place.avgRating}</h6>
                     <h3>{place.address}</h3>
                     <p>Do you recommend this place?</p>
                     <p>Something about this place</p>
@@ -62,8 +57,7 @@ const Place = () => {
                     )}
                 </span>
             )}
-
-            {/* reviews will populate around here */}
+            {<PlaceReviews />}
         </div >
     )
 }

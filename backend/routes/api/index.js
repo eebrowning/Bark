@@ -7,8 +7,8 @@ const reviewsRouter = require('./reviews.js')
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
-router.use('/places', placesRouter)
-router.use('/reviews', reviewsRouter)
+router.use('/places', placesRouter);
+router.use('/reviews', reviewsRouter);
 
 
 

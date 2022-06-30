@@ -3,10 +3,8 @@ const { csrfFetch } = require('./csrf');
 //TYPES
 const CREATE_REVIEW = 'create/createReview'//create
 const GET_REVIEWS = 'reviews/getReviews'//read
-const GET_REVIEW = 'reviews/getReview'//read
-
 const UPDATE_REVIEW = 'reviews/updateReview'//update
-const DELETE_REVIEW = 'reviews/REVIEWeview'//delete
+const DELETE_REVIEW = 'reviews/deleteReview'//delete
 
 
 //THUNK ACTION CREATOR
@@ -22,7 +20,6 @@ const actionGetReviews = (reviews) => {
         reviews
     }
 }
-
 const actionUpdateReview = (review) => {
     return {
         type: UPDATE_REVIEW,
@@ -39,6 +36,7 @@ const actionDeleteReview = (reviewId) => {
 //THUNKS one per route
 
 export const thunkGetAllReviews = () => async dispatch => {
+    //does this need to be passed palce id? prolly not, as it will be available on page
     const res = await csrfFetch('/api/reviews')
 
     console.log('THUNK, GET ALL REVIEWS: ')
@@ -54,9 +52,7 @@ export const thunkCreateReview = (review) => async dispatch => {
     // console.log(review, 'in thunkCreateReview, step4?')
     const res = await csrfFetch('/api/reviews', {
         method: 'post',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(review)
     })
     if (res.ok) {
@@ -103,7 +99,6 @@ const reviewsReducer = (state = iState, action) => {
         case CREATE_REVIEW:
             newState = { ...state, [action.review.id]: action.review };
             console.log(action, "...CREATE_review... in reviewsReducer")
-
             console.log(newState, "...CREATE_review... in reviewsReducer")
             return newState;
         case GET_REVIEWS:
@@ -113,13 +108,6 @@ const reviewsReducer = (state = iState, action) => {
             })
             // console.log(action, "...GET_reviewS... in reviewsReducer")
             // console.log(newState, "...GET_reviewS... in reviewsReducer")
-            return newState;
-        case GET_REVIEW:
-            newState = { ...state };
-
-            console.log(action, "action...GET_review... in reviewsReducer")
-            console.log(newState, "State...GET_review... in reviewsReducer")
-            newState[action.review.review.id] = action.review.review;// ???? wtf happened here?
             return newState;
         case UPDATE_REVIEW:
             newState = { ...state }

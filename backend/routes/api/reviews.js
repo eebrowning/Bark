@@ -1,3 +1,5 @@
+//maybe incorportate this into place?
+
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
@@ -5,21 +7,22 @@ const { Review } = require('../../db/models');
 const router = express.Router();
 
 //GET reviews
-router.get('/places/:placeId', asyncHandler(async (req, res) => {
-    let { reviewId } = req.params;
-    const reviews = await Review.findAll({
-
-        where: {
-            reviewId: id
-        }
-    });
+router.get('/', asyncHandler(async (req, res) => {
+    let { placeId } = req.params;
+    const reviews = await Review.findAll(
+        //     {
+        //         where: {
+        //             placdId: placeId
+        //         }
+        //     }
+    );
     return res.json(reviews);
 }));
 
 
 
 //PUT review
-router.put('/:placeId', asyncHandler(async (req, res) => {
+router.put('/:reviewId', asyncHandler(async (req, res) => {
     const { reviewId } = req.params;
     const reviewObj = await Review.findByPk(reviewId);
     const reviewOg = reviewObj.dataValues;
@@ -46,7 +49,7 @@ router.post('/', asyncHandler(async (req, res) => {
     console.log('\n\n\n', 'in POSTS route', '\n\n\n')
     if (imageURL === '') imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
 
-    const review = await Review.create({ userId, name, address, type, imageURL });
+    const review = await Review.create({ userId, placeId, title, body, rating, imageURL });
 
 
     return res.json(review);
