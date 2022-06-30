@@ -9,6 +9,7 @@ const router = express.Router();
 //GET reviews
 router.get('/', asyncHandler(async (req, res) => {
     let { placeId } = req.params;
+    console.log(placeId, "in GET reviews")
     const reviews = await Review.findAll(
         //     {
         //         where: {
@@ -29,13 +30,13 @@ router.put('/:reviewId', asyncHandler(async (req, res) => {
     // console.log('\n\n', 'neerrd', reviewObj, '\n\n')
     const { review } = req.body;
 
-    console.log('\n', "edit:", reviewOg, "\n with:", review, '\n\n')
+    // console.log('\n', "edit:", reviewOg, "\n with:", review, '\n\n')
     reviewOg.address = review.address;
     reviewOg.imageURL = review.imageURL;
     reviewOg.type = review.type;
     reviewOg.updatedAt = new Date();
     // await reviewOg.save();
-    console.log(reviewOg, "this is the modified object");
+    // console.log(reviewOg, "this is the modified object");
     return res.json({ message: 'Success!' });
 
 }))
