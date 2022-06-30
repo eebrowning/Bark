@@ -9,6 +9,7 @@ import Navigation from "./components/Navigation";
 import Places from "./components/Places";
 import Place from "./components/Place";
 import EditPlaceForm from './components/EditPlaceForm'
+import CreateReviewForm from './components/CreateReviewForm'
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,9 @@ function App() {
           </Route>
           <Route exact path={'/places/:placeId/edit'}>
             <EditPlaceForm />
+          </Route>
+          <Route exact path={'/places/:placeId/review'}>
+            <CreateReviewForm />
           </Route>
         </Switch>
       )}

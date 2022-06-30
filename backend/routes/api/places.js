@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 
-const { Place } = require('../../db/models');
+const { Place, Review } = require('../../db/models');
 
 //places will go api/places/:placeId or :placeId
 const router = express.Router();
@@ -19,6 +19,10 @@ router.get('/:placeId', asyncHandler(async (req, res) => {//works
     console.log(placeId, 'placeId trying to get single place');
     const place = await Place.findByPk(placeId);
 
+    const reviews = await Review.findAll({
+        where: { placeId: placeId }
+    })//reviews always come with a single place, shouldn't need their own endpoint
+    console.log(reviews);
     return res.json(place);
 }));
 

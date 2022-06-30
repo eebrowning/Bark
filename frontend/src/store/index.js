@@ -7,7 +7,7 @@ import sessionReducer from './session';
 const rootReducer = combineReducers({
   session: sessionReducer,
   placesState: placesReducer,
-  reviewsState: reviewsReducer
+  // reviewsState: reviewsReducer
 });
 
 let enhancer;

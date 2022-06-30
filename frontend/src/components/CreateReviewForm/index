@@ -1,0 +1,65 @@
+import { useEffect, useState } from "react"
+import { thunkCreatePlace } from "../../store/place";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from 'react-router-dom';
+
+const CreateReviewForm = () => {
+    const { placeId } = useParams();
+    console.log(placeId, 'placeId in PlaceReviews')
+    const [title, setTitle] = useEffect('')
+    const [body, setBody] = useEffect('')
+    const [imageURL, setImageURL] = useEffect('')
+    const [rating, setRating] = useEffect('');
+    const dispatch = useDispatch();
+
+    useEffect()
+
+    return (
+        <span id="reviews-span">
+            <h1>put yon reviews here</h1>
+
+            <form id="review-form" onSubmit={handleSubmit}>
+                <input
+                    required
+                    name="name"
+                    placeholder="place name"
+                    type="string"
+                    value={title}
+                    onChange={e => setTitle(e.target.value)}
+                />
+                <label>Review</label>
+                <textarea
+                    required
+                    name='review body'
+                    placeholder="review here"
+                    value={body}
+                    onChange={e => setBody(e.target.value)}
+                />
+                <label>Optional Image</label>
+                <input
+                    name='Image'
+                    placeholder="link .jpg/.jpeg/.png here"
+                    value={imageURL}
+                    onChange={e => setImageURL(e.target.value)}
+                />
+                <label>Rating</label>
+                <select
+                    required
+                    name='rating'
+                    placeholder="Rating"
+                    value={rating}
+                    onChange={e => setRating(e.target.value)}
+                >
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+
+                </select>
+
+                <button onclick={handleSubmit}>Submit Place</button>
+            </form>
+        </span>
+    )
+}

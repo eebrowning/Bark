@@ -118,9 +118,9 @@ const placesReducer = (state = iState, action) => {
     switch (action.type) {
         case CREATE_PLACE:
             newState = { ...state, [action.place.id]: action.place };
-            console.log(action, "...CREATE_PLACE... in placesReducer")
+            // console.log(action, "...CREATE_PLACE... in placesReducer")
 
-            console.log(newState, "...CREATE_PLACE... in placesReducer")
+            // console.log(newState, "...CREATE_PLACE... in placesReducer")
             return newState;
         case GET_PLACES:
             newState = { ...state };
@@ -133,13 +133,13 @@ const placesReducer = (state = iState, action) => {
         case GET_PLACE:
             newState = { ...state };
 
-            console.log(action, "action...GET_PLACE... in placesReducer")
-            console.log(newState, "State...GET_PLACE... in placesReducer")
+            // console.log(action, "action...GET_PLACE... in placesReducer")
+            // console.log(newState, "State...GET_PLACE... in placesReducer")
             newState[action.place.id] = action.place;// ???? wtf happened here?
             return newState;
         case UPDATE_PLACE:
             newState = { ...state }
-            console.log(action.place, "action...UPDATE_PLACE... in placesReducer")
+            // console.log(action.place, "action...UPDATE_PLACE... in placesReducer")
 
             //state seems right: holds changes
             //changes don't show on database
@@ -147,9 +147,9 @@ const placesReducer = (state = iState, action) => {
             newState[action.place.id] = action.place;
             return newState;
         case DELETE_PLACE:
-            console.log(action, 'action...DELETE_PLACE...')
+            // console.log(action, 'action...DELETE_PLACE...')
             newState = { ...state }
-            console.log('...DELETE_PLACE... how to refresh list?'); //don't see this.
+            // console.log('...DELETE_PLACE... how to refresh list?'); //don't see this.
             delete newState[action.placeId]
             return newState;
         default:
