@@ -11,11 +11,11 @@ router.get('/', asyncHandler(async (req, res) => {
     let { placeId } = req.params;
     console.log(placeId, "in GET reviews")
     const reviews = await Review.findAll(
-        //     {
-        //         where: {
-        //             placdId: placeId
-        //         }
+        // {
+        //     where: {
+        //         placeId: parseInt(placeId)
         //     }
+        // }
     );
     return res.json(reviews);
 }));
@@ -45,19 +45,17 @@ router.put('/:reviewId', asyncHandler(async (req, res) => {
 
 //POST reviews
 router.post('/', asyncHandler(async (req, res) => {
-    let { userId, name, address, type, imageURL } = req.body;
-    // const { userId } = req.session.auth;
-    console.log('\n\n\n', 'in POSTS route', '\n\n\n')
-    if (imageURL === '') imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
+    let { userId, placeId, title, body, rating, imageURL } = req.body;
+
+    console.log('\n\n\n', 'in POST review route', '\n\n\n')
 
     const review = await Review.create({ userId, placeId, title, body, rating, imageURL });
-
 
     return res.json(review);
 }));
 
 //DELETE review
-router.delete('/:placeId/:reviewId', asyncHandler(async (req, res) => {
+router.delete('/:reviewId', asyncHandler(async (req, res) => {
     const { reviewId } = req.params;
 
     const result = await Review.destroy({ where: { id: reviewId } });
