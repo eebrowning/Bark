@@ -19,6 +19,7 @@ const Place = () => {
 
     useEffect(() => {
         dispatch(thunkGetPlace(placeId));
+        dispatch(thunkGetAllReviews());
         // console.log('dispatched to thunkGetPlace')
     }, [dispatch]);
 

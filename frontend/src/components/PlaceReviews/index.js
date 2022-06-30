@@ -30,7 +30,9 @@ const PlaceReviews = () => {
     }
     const handleDelete = (e) => {
         e.preventDefault();
-        const reviewId = e.target.id.split('-')[1]
+        let reviewId = e.target.id.split('-')[1]
+        reviewId = parseInt(reviewId)
+        console.log(reviewId, 'should be review Id')
         dispatch(thunkDeleteReview(reviewId));///need to get reviewId
 
         history.push(`/places/${placeId}`)
@@ -41,19 +43,19 @@ const PlaceReviews = () => {
             {reviewsArray?.map((review) => {
                 if (review.placeId == placeId) {
                     return (
-                        <>
-                            <span key={review.id} id={`place-box-${review.id}`} >
+                        <span key={review.id}>
+                            <span id={`place-box-${review.id}`} >
                                 <img height={'100px'} width={'100px'} src={review.imageURL} alt="alt"></img>
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
                             </span>
                             {loggedInUserId === review.userId && (
                                 <>
                                     {/* <button id='edit-place' onClick={handleEdit}>Edit</button> */}
-                                    <button id={`delete-${review.reviewId}`} onClick={handleDelete}>Delete</button>
+                                    <button id={`delete-${review.id}`} onClick={handleDelete}>Delete</button>
                                 </>
                             )}
 
-                        </>
+                        </span>
 
                     )
                 }
