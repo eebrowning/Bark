@@ -1,0 +1,7 @@
+*//start given
+npx sequelize model:generate --name User --attributes id:integer,username:string,email:string,hashedPassword:string;
+*//end given
+
+npx sequelize model:generate --name Place --attributes userId:integer,name:string,address:string,type:string;
+
+npx sequelize model:generate --name Review --attributes title:string,body:text,userId:integer,placeId:integer;
