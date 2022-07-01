@@ -4,18 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
 
-const CreatePlaceForm = (props) => {
+const CreatePlaceForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     const [name, setName] = useState('');
     const [address, setAddress] = useState('')
     const [type, setType] = useState('')
     const [imageURL, setImageURL] = useState("");
-    const [errors, setErrors] = useState('')
+    const [errors, setErrors] = useState([])
 
     const user = useSelector(state => {
         return state.session.user;
     })
+
+
 
     const userId = user?.id;
     // console.log(userId, 'USER ID for newPlace')
@@ -26,24 +28,28 @@ const CreatePlaceForm = (props) => {
 
         const newPlace = { userId, name: trimName, address, type, imageURL, };
         // console.log(newPlace, 'newPlace, step1?')
-        let createdPlace = await dispatch(thunkCreatePlace(newPlace));
 
 
-        if (createdPlace && user) {
+        // if (createdPlace && user) {
+        setErrors([]);
+        let createdPlace = await dispatch(thunkCreatePlace(newPlace)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+            // console.log(errors, 'errors in createPlaceForm')
+        });
+        if (createdPlace) history.push(`/places/${createdPlace.id}`);//need placeId somehow
+        return createdPlace;
 
-            history.push(`/places/${createdPlace.id}`);//need placeId somehow
-            return createdPlace
-            // .catch(async (res) => {
-            //     const data = await res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            // });
-        }
+        // }
     }
 
 
     return (
         <section id="place-form-section">
             <form id="place-form" onSubmit={handleSubmit}>
+                <ul>
+                    {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <input
                     required
                     name="name"
@@ -65,6 +71,7 @@ const CreatePlaceForm = (props) => {
                     value={imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 />
+                <label>Venue type</label>
                 <select
                     required
                     name='type'
@@ -73,7 +80,7 @@ const CreatePlaceForm = (props) => {
                     onChange={e => setType(e.target.value)}
 
                 >
-                    <option>Choose a venue type</option>
+                    <option></option>
                     <option>Dog Park</option>
                     <option>Bar/Restaurant</option>
                     <option>Park</option>
@@ -82,9 +89,7 @@ const CreatePlaceForm = (props) => {
 
                 <button>Submit Place</button>
             </form>
-            <div>
-                { }
-            </div>
+
         </section>
     )
 

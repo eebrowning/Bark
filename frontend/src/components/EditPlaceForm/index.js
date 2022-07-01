@@ -24,60 +24,66 @@ const EditPlaceForm = (props) => {
 
     useEffect(() => {
         dispatch(thunkGetPlace(placeId));
-
-        // console.log('dispatched to thunkGetPlace')
+        console.log('dispatched to thunkGetPlace')
     }, [dispatch]);
 
     // console.log(user, 'user in createplaceform')
     // console.log(userId, 'USER ID for newPlace')
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
         // console.log(place, '\n\n\n', 'PRE EDIT PLACE FORM', '\n\n')
+
+
+
         place.address = address;
         place.imageURL = imageURL;
         place.type = type;
-        console.log(place, '\n\n\n', 'EDIT PLACE FORM', '\n\n')
-        let updatedPlace = await dispatch(thunkUpdatePlace(place));
-        console.log(updatedPlace.id, 'updatedPlace id')
+        // console.log(place, '\n\n\n', 'EDIT PLACE FORM', '\n\n')
+        setErrors([]);
+        let updatedPlace = await dispatch(thunkUpdatePlace(place))
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+                console.log(errors, 'errors in editPlaceForm')
+
+            });
+
+        // console.log(updatedPlace.id, 'updatedPlace id')
         if (updatedPlace && user) {
             history.push(`/places/${updatedPlace.id}`);
-            return updatedPlace;
-            // .catch(async (res) => {
-            //     const data = await res.json();
-            //     if (data && data.errors) setErrors(data.errors);
-            // });
         }
+        return updatedPlace;
     }
 
 
     return (
         <section id="place-form-section">
             <form id="place-form" onSubmit={handleSubmit}>
-
+                <ul>
+                    {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <input
                     required
                     name='address'
-                    placeholder="place address"
+                    placeholder={place.address}
                     value={address}
                     onChange={e => setAddress(e.target.value)}
                 />
                 <input
                     name='Image'
-                    placeholder="link .jpg/.jpeg/.png here"
+                    placeholder={place.imageURL}
                     value={imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 />
                 <select
                     required
                     name='type'
-                    placeholder={type}
+                    placeholder={place.type}
                     value={type}
                     onChange={e => setType(e.target.value)}
 
                 >
-                    <option>Choose a venue type</option>
+                    <option></option>
                     <option>Dog Park</option>
                     <option>Bar/Restaurant</option>
                     <option>Park</option>
