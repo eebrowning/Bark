@@ -2,9 +2,27 @@
 
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const { check, validationResult } = require('express-validator');
 
 const { Review } = require('../../db/models');
+const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
+
+
+const validateReview = [
+    check('title')
+        .exists({ checkFalsy: true })
+        .isLength({ max: 30 })
+        .isLength({ min: 3 })
+        .withMessage('Please provide a title between 3 and 30 characters.'),
+    check('body')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a review.'),
+    check('rating')
+        .exists({ checkFalsy: true })
+        .withMessage('Please select a rating.'),
+    handleValidationErrors
+]
 
 //GET reviews
 router.get('/', asyncHandler(async (req, res) => {
@@ -23,7 +41,7 @@ router.get('/', asyncHandler(async (req, res) => {
 
 
 //PUT review
-router.put('/:reviewId', asyncHandler(async (req, res) => {
+router.put('/:reviewId', validateReview, asyncHandler(async (req, res) => {
     const { reviewId } = req.params;
     const reviewObj = await Review.findByPk(reviewId);
     const reviewOg = reviewObj.dataValues;
@@ -44,14 +62,12 @@ router.put('/:reviewId', asyncHandler(async (req, res) => {
 
 
 //POST reviews
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', validateReview, asyncHandler(async (req, res) => {
     let { userId, placeId, title, body, rating } = req.body;//imageURL removed, may add to reviews later
-
     // console.log('\n\n\n', 'in POST review route', '\n\n\n')
-
     const review = await Review.create({ userId, placeId, title, body, rating });//imageURL removed, 
-
     return res.json(review);
+
 }));
 
 //DELETE review

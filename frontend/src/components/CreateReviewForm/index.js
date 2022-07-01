@@ -13,6 +13,8 @@ const CreateReviewForm = () => {
     const [body, setBody] = useState('')
     // const [imageURL, setImageURL] = useState('')
     const [rating, setRating] = useState('')
+    const [errors, setErrors] = useState([])
+
     const dispatch = useDispatch();
     const history = useHistory();
     useEffect(() => {
@@ -21,7 +23,9 @@ const CreateReviewForm = () => {
     }, [dispatch]);
 
 
+    const allReviews = useSelector(state => Object.values(state.reviewsState))
 
+    console.log(allReviews, ' in CreateReviewForm')
 
 
     const user = useSelector(state => {
@@ -34,30 +38,31 @@ const CreateReviewForm = () => {
 
     // console.log(reviews, "this Place's reviews");
 
-    let formErrors;
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (rating === 'Rating') {
-            const review = { title, body, placeId: placeId, userId: userId, rating }; //imageURL removed, maybe adding to reviews later
-            dispatch(thunkCreateReview(review))
-            history.push(`/places/${placeId}`)
-        } else {
-            formErrors = (
-                <>
-                    <div>Rating required!</div>
-                </>
-            )
-        }
+
+        const review = { title, body, placeId: placeId, userId: userId, rating }; //imageURL removed, maybe adding to reviews later
+        const createdReview = await dispatch(thunkCreateReview(review)).catch(async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+            // console.log(errors, 'errors in createPlaceForm');
+        });
+        if (createdReview) history.push(`/places/${placeId}`)
+        return createdReview;
+
     }
     return (
         <span id="reviews-span">
             <h1>How'd it go with the doggo?</h1>
-            {formErrors && (formErrors)}
             <form id="review-form" onSubmit={handleSubmit}>
+                <ul>
+                    {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
                 <input
                     required
                     name="name"
-                    placeholder="place name"
+                    placeholder="review title"
                     type="string"
                     value={title}
                     onChange={e => setTitle(e.target.value)}
@@ -86,7 +91,6 @@ const CreateReviewForm = () => {
                     onChange={e => setRating(e.target.value)}
                 >
                     <label>Rating</label>
-                    <option></option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>

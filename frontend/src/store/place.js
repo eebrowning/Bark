@@ -134,7 +134,7 @@ const placesReducer = (state = iState, action) => {
             return newState;
         case UPDATE_PLACE:
             newState = { ...state }
-            // console.log(action.place, "action...UPDATE_PLACE... in placesReducer")
+            console.log(action.place, "action...UPDATE_PLACE... in placesReducer")
             newState[action.place.id] = action.place;
             return newState;
         case DELETE_PLACE:

@@ -114,14 +114,10 @@ const reviewsReducer = (state = iState, action) => {
             newState = { ...state }
             console.log(action.review, "action...UPDATE_review... in reviewsReducer")
 
-            //state seems right: holds changes
-            //changes don't show on database
-
             newState[action.review.id] = action.review;
             return newState;
         case DELETE_REVIEW:
-            console.log("this is the action DELETE_REVIEW reducer ===> ", action);
-            console.log(action.reviewId, 'action.reviewId.body in...DELETE_review...')
+            // console.log(action.reviewId, 'action.reviewId.body in...DELETE_review...')
             newState = { ...state }
             // console.log('...DELETE_review... how to refresh list?');
             delete newState[action.reviewId]//not actually deleting here, your action.reviewId is a response object

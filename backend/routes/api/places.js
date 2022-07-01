@@ -1,10 +1,34 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const { Place, Review } = require('../../db/models');
 
 //places will go api/places/:placeId or :placeId
 const router = express.Router();
+
+
+const validatePlace = [
+    check('name')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 3 })
+        .isLength({ max: 30 })
+        .withMessage('Please provide a Place Name between 3 and 30 characters.'),
+    check('address')
+        .exists({ checkFalsy: true })
+        .isLength({ min: 3 })
+        .isLength({ max: 250 })
+        .withMessage('Please provide an Address between 5 and 250 characters.'),
+    check('type')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a Place Type.'),
+    // check('imageURL')
+    //     .isURL()
+    //     .withMessage('Please provide an image link (jpg/jpeg format only).'),
+    handleValidationErrors
+]
+
 
 //GET places, main page
 router.get('/', asyncHandler(async (req, res) => {//works
@@ -26,28 +50,24 @@ router.get('/:placeId', asyncHandler(async (req, res) => {//works
 }));
 
 //PUT place
-router.put('/:placeId', asyncHandler(async (req, res) => {
+router.put('/:placeId', validatePlace, asyncHandler(async (req, res) => {
     const { placeId } = req.params;
     const placeObj = await Place.findByPk(placeId);
 
-    await placeObj.update(req.body);//sequelize!
+    if (!req.body.imageURL.includes('jpg' || 'png')) req.body.imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
 
+    console.log(req.body.imageURL, 'place obj in places PUT ROUTE')
+    await placeObj.update(req.body);//sequelize!
     return res.json(placeObj);
 
 }))
 
-
-
 //POST places
-router.post('/', asyncHandler(async (req, res) => {
+router.post('/', validatePlace, asyncHandler(async (req, res) => {
     let { userId, name, address, type, imageURL } = req.body;
-    // const { userId } = req.session.auth;
-    // console.log('\n\n\n', 'in POSTS route', '\n\n\n')
-    if (imageURL === '') imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
+    if (!imageURL.includes('jpg' || 'png')) imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
 
     const place = await Place.create({ userId, name, address, type, imageURL });
-
-
     return res.json(place);
 }));
 

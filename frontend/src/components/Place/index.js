@@ -14,9 +14,7 @@ const Place = () => {
 
     const sessionState = useSelector((state) => state.session);
 
-    console.log(sessionState, 'this is the state of the session, shoudl have user')
-
-
+    // console.log(sessionState, 'this is the state of the session, shoudl have user')
 
     const place = useSelector((state) => state.placesState[placeId]);
 
@@ -51,12 +49,12 @@ const Place = () => {
                     <h3>{place.address}</h3>
                     <p>Do you recommend this place?</p>
                     <p>Something about this place</p>
-                    {/* {(sessionState.user.id && sessionState.user.id === place.userId) && (
+                    {(sessionState.user.id && sessionState.user.id === place.userId) && (
                         <>
                             <button id='edit-place' onClick={handleEdit}>Edit</button>
                             <button id='delete-place' onClick={handleDelete}>Delete</button>
                         </>
-                    )} */}
+                    )}
 
                 </span>
             )}
