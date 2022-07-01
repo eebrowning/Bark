@@ -120,21 +120,26 @@ const reviewsReducer = (state = iState, action) => {
             newState[action.review.id] = action.review;
             return newState;
         case DELETE_REVIEW:
-            console.log(action, 'action...DELETE_review...')
+            console.log("this is the action DELETE_REVIEW reducer ===> ", action);
+            console.log(action.reviewId, 'action...DELETE_review...')
             newState = { ...state }
-            console.log('...DELETE_review... how to refresh list?');
+            // console.log('...DELETE_review... how to refresh list?');
             delete newState[action.reviewId]
             return newState;
         default:
             return state;
     }
 }
-
 export default reviewsReducer;
 
 
-// case UPDATE_ITEM:
-// return {
-//     ...state,
-//     [action.item.id]: action.item
-//   };
+// case DELETE_REVIEW:
+//     return {
+//       ...state,
+//       [action.placeId]: {
+//         ...state[action.placeId],
+//         items: state[action.placeId].items.filter(
+//           (reviewId) => reviewId !== action.reviewId
+//         )
+//       }
+//     };

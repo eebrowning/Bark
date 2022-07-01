@@ -8,12 +8,12 @@ const router = express.Router();
 
 //GET reviews
 router.get('/', asyncHandler(async (req, res) => {
-    let { placeId } = req.params;
-    console.log(placeId, "in GET reviews")
+    // let { placeId } = req.params;
+    // console.log(req.params, "in GET reviews")
     const reviews = await Review.findAll(
         // {
         //     where: {
-        //         placeId: parseInt(placeId)
+        //         placeId: placeId
         //     }
         // }
     );
@@ -59,7 +59,7 @@ router.delete('/:reviewId', asyncHandler(async (req, res) => {
     const { reviewId } = req.params;
 
     const result = await Review.destroy({ where: { id: reviewId } });
-    return res.json();
+    return res.json(reviewId);
 }))
 
 // /:reviewId(\\w+)

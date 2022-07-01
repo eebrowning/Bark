@@ -16,13 +16,12 @@ router.get('/', asyncHandler(async (req, res) => {//works
 router.get('/:placeId', asyncHandler(async (req, res) => {//works
     const { placeId } = req.params;
 
-    console.log(placeId, 'placeId trying to get single place');
+    // console.log(placeId, 'placeId trying to get single place');
     const place = await Place.findByPk(placeId);
 
     const reviews = await Review.findAll({
         where: { placeId: placeId }
     })//reviews always come with a single place, shouldn't need their own endpoint
-    console.log(reviews);
     return res.json(place);
 }));
 
@@ -43,7 +42,7 @@ router.put('/:placeId', asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
     let { userId, name, address, type, imageURL } = req.body;
     // const { userId } = req.session.auth;
-    console.log('\n\n\n', 'in POSTS route', '\n\n\n')
+    // console.log('\n\n\n', 'in POSTS route', '\n\n\n')
     if (imageURL === '') imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
 
     const place = await Place.create({ userId, name, address, type, imageURL });

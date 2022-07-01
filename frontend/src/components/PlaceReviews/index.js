@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { thunkGetPlace } from "../../store/place"
@@ -12,15 +12,23 @@ const PlaceReviews = () => {
     const dispatch = useDispatch();
     const sessionState = useSelector((state) => state.session);
     const loggedInUserId = sessionState.user.id;
+    const [reviews, setReviews] = useState()
 
     const reviewsArray = useSelector(state => Object.values(state.reviewsState))
     // console.log(reviewsArray, "reviews state array, PlaceReviews");
 
     useEffect(() => {
         dispatch(thunkGetPlace(placeId));
-        dispatch(thunkGetAllReviews());
-        // console.log('dispatched to thunkGetPlace')
+
+        console.log('dispatched to thunkGetPlace')
+
     }, [dispatch]);
+
+    // useEffect(() => {
+    //     if (reviewsArray) {
+    //         setReviews(reviewsArray)
+    //     }
+    // }, [reviewsArray]);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -28,14 +36,16 @@ const PlaceReviews = () => {
         history.push(`/places/${placeId}/review`);
         // dispatch(thunkUpdatePlace(place)); NO! dispatch will go on submit of edit form!
     }
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault();
         let reviewId = e.target.id.split('-')[1]
         reviewId = parseInt(reviewId)
         console.log(reviewId, 'should be review Id')
-        dispatch(thunkDeleteReview(reviewId));///need to get reviewId
+        await dispatch(thunkDeleteReview(reviewId));///need to get reviewId
+        // dispatch(thunkGetAllReviews());//is this dynamically adding? NO.
 
         history.push(`/places/${placeId}`)
+        return;
     }
     return (
         <span id="reviews-span">
