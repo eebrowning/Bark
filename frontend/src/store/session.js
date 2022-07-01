@@ -16,8 +16,27 @@ const removeUser = () => {
     };
 };
 
+
+//login thunk
 export const login = (user) => async (dispatch) => {
+    console.log('login thunk', user, ' signed in')
     const { credential, password } = user;
+    const response = await csrfFetch('/api/session', {
+        method: 'POST',
+        body: JSON.stringify({
+            credential,
+            password,
+        }),
+    });
+    const data = await response.json();
+    dispatch(setUser(data.user));
+    return response;
+};
+
+export const demoLogin = (user) => async (dispatch) => {
+    const credential = 'DemoDog';
+    console.log('login thunk', credential, ' signing in')
+    const password = 'password';
     const response = await csrfFetch('/api/session', {
         method: 'POST',
         body: JSON.stringify({
@@ -66,6 +85,7 @@ const sessionReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
         case SET_USER:
+            console.log(action, 'this is the action of SET_USER')
             newState = Object.assign({}, state);
             newState.user = action.payload;
             return newState;

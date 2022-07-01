@@ -47,7 +47,7 @@ router.put('/:reviewId', asyncHandler(async (req, res) => {
 router.post('/', asyncHandler(async (req, res) => {
     let { userId, placeId, title, body, rating, imageURL } = req.body;
 
-    console.log('\n\n\n', 'in POST review route', '\n\n\n')
+    // console.log('\n\n\n', 'in POST review route', '\n\n\n')
 
     const review = await Review.create({ userId, placeId, title, body, rating, imageURL });
 

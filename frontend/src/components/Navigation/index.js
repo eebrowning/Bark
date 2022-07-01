@@ -1,13 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import { demoLogin } from '../../store/session';
 
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
 
     let sessionLinks;
+
+    useEffect(() => {
+
+
+    }, [dispatch])
+    const handleClick = (e) => {
+        e.preventDefault();
+
+        const user = { credential: 'DemoDog', password: 'password' };
+
+        return dispatch(demoLogin())
+        // .catch(async (res) => {
+        //     const data = await res.json();
+        //     if (data && data.errors) setErrors(data.errors);
+        // });
+    }
+
+
     if (sessionUser) {
         sessionLinks = (
             <>
@@ -20,6 +40,8 @@ function Navigation({ isLoaded }) {
             <>
                 <NavLink to="/login">Log In</NavLink>
                 <NavLink to="/signup">Sign Up</NavLink>
+                <button onClick={handleClick}>Demo User</button>
+
             </>
         );
     }
