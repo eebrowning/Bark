@@ -11,7 +11,7 @@ const CreateReviewForm = () => {
     placeId = parseInt(placeId);
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
-    const [imageURL, setImageURL] = useState('')
+    // const [imageURL, setImageURL] = useState('')
     const [rating, setRating] = useState('')
     const dispatch = useDispatch();
     const history = useHistory();
@@ -34,17 +34,25 @@ const CreateReviewForm = () => {
 
     // console.log(reviews, "this Place's reviews");
 
-
+    let formErrors;
     const handleSubmit = (e) => {
         e.preventDefault();
-        const review = { title, body, imageURL, placeId: placeId, userId: userId, rating }
-        dispatch(thunkCreateReview(review))
-        history.push(`/places/${placeId}`)
+        if (rating === 'Rating') {
+            const review = { title, body, placeId: placeId, userId: userId, rating }; //imageURL removed, maybe adding to reviews later
+            dispatch(thunkCreateReview(review))
+            history.push(`/places/${placeId}`)
+        } else {
+            formErrors = (
+                <>
+                    <div>Rating required!</div>
+                </>
+            )
+        }
     }
     return (
         <span id="reviews-span">
-            <h1>put yon review here</h1>
-
+            <h1>How'd it go with the doggo?</h1>
+            {formErrors && (formErrors)}
             <form id="review-form" onSubmit={handleSubmit}>
                 <input
                     required
@@ -62,13 +70,13 @@ const CreateReviewForm = () => {
                     value={body}
                     onChange={e => setBody(e.target.value)}
                 />
-                <label>Optional Image</label>
+                {/* <label>Optional Image</label>
                 <input
                     name='Image'
                     placeholder="link .jpg/.jpeg/.png here"
                     value={imageURL}
                     onChange={e => setImageURL(e.target.value)}
-                />
+                /> */}
                 <label>Rating</label>
                 <select
                     required
@@ -77,7 +85,8 @@ const CreateReviewForm = () => {
                     value={rating}
                     onChange={e => setRating(e.target.value)}
                 >
-                    <option>Rating</option>
+                    <label>Rating</label>
+                    <option></option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -86,7 +95,7 @@ const CreateReviewForm = () => {
 
                 </select>
 
-                <button>Submit Place</button>
+                <button>Submit Review</button>
             </form>
         </span>
     )

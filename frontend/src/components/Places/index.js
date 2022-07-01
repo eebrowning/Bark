@@ -21,12 +21,12 @@ const Places = () => {
     })
 
     return (
-        <div>
-            <h2>All places</h2>
+        <div id={'places-view'}>
+            <h2>Places for your Pup</h2>
             {!placesArr.length && <span>No places available right now.</span>}
             <ul className="place-list" >
                 {placesArr?.map((place) => (
-                    <span key={place.id} id={`place-box-${place.id}`} >
+                    <span key={place.id} id={`place-box-${place.id}`} className={'place-card'} >
                         <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
                         <h2 id={`place-${place.id}`} onClick={handleClick}>{place.name}</h2>
                         <p>Do you recommend this place?</p>

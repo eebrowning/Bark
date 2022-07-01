@@ -32,7 +32,7 @@ router.put('/:reviewId', asyncHandler(async (req, res) => {
 
     // console.log('\n', "edit:", reviewOg, "\n with:", review, '\n\n')
     reviewOg.address = review.address;
-    reviewOg.imageURL = review.imageURL;
+    // reviewOg.imageURL = review.imageURL;
     reviewOg.type = review.type;
     reviewOg.updatedAt = new Date();
     // await reviewOg.save();
@@ -45,11 +45,11 @@ router.put('/:reviewId', asyncHandler(async (req, res) => {
 
 //POST reviews
 router.post('/', asyncHandler(async (req, res) => {
-    let { userId, placeId, title, body, rating, imageURL } = req.body;
+    let { userId, placeId, title, body, rating } = req.body;//imageURL removed, may add to reviews later
 
     // console.log('\n\n\n', 'in POST review route', '\n\n\n')
 
-    const review = await Review.create({ userId, placeId, title, body, rating, imageURL });
+    const review = await Review.create({ userId, placeId, title, body, rating });//imageURL removed, 
 
     return res.json(review);
 }));

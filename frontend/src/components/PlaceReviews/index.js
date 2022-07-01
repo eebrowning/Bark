@@ -11,8 +11,8 @@ const PlaceReviews = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const sessionState = useSelector((state) => state.session);
-    const loggedInUserId = sessionState.user.id;
-    const [reviews, setReviews] = useState()
+    // const loggedInUserId = sessionState.user.id;
+
 
     const reviewsArray = useSelector(state => Object.values(state.reviewsState))
     // console.log(reviewsArray, "reviews state array, PlaceReviews");
@@ -24,11 +24,6 @@ const PlaceReviews = () => {
 
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     if (reviewsArray) {
-    //         setReviews(reviewsArray)
-    //     }
-    // }, [reviewsArray]);
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -47,23 +42,36 @@ const PlaceReviews = () => {
         history.push(`/places/${placeId}`)
         return;
     }
+
     return (
         <span id="reviews-span">
             <h1>Reviews:</h1>
             {reviewsArray?.map((review) => {
-                if (review.placeId == placeId) {
+                if (sessionState.user && review.placeId == placeId) {
                     return (
                         <span key={review.id}>
                             <span id={`place-box-${review.id}`} >
-                                <img height={'100px'} width={'100px'} src={review.imageURL} alt="alt"></img>
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
+                                <div id={`rating-${review.id}`}>{review.rating} Star</div>
                             </span>
-                            {loggedInUserId === review.userId && (
+                            {sessionState.user.id === review.userId && (
                                 <>
                                     {/* <button id='edit-place' onClick={handleEdit}>Edit</button> */}
                                     <button id={`delete-${review.id}`} onClick={handleDelete}>Delete</button>
                                 </>
                             )}
+
+                        </span>
+
+                    )
+                } else {
+                    return (
+                        <span key={review.id}>
+                            <span id={`place-box-${review.id}`} >
+                                <h2 id={`place-${review.id}`} >{review.title}</h2>
+                                <div id={`rating-${review.id}`}>Rating: {review.rating}</div>
+                                <p> {review.body}</p>
+                            </span>
 
                         </span>
 
