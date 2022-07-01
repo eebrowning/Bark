@@ -13,7 +13,10 @@ const Place = () => {
     const dispatch = useDispatch();
 
     const sessionState = useSelector((state) => state.session);
-    const loggedInUserId = sessionState.user.id;
+
+    console.log(sessionState, 'this is the state of the session, shoudl have user')
+
+
 
     const place = useSelector((state) => state.placesState[placeId]);
 
@@ -48,14 +51,30 @@ const Place = () => {
                     <h3>{place.address}</h3>
                     <p>Do you recommend this place?</p>
                     <p>Something about this place</p>
-                    {loggedInUserId === place.userId && (
+                    {/* {(sessionState.user.id && sessionState.user.id === place.userId) && (
                         <>
                             <button id='edit-place' onClick={handleEdit}>Edit</button>
                             <button id='delete-place' onClick={handleDelete}>Delete</button>
                         </>
-                    )}
+                    )} */}
+
                 </span>
             )}
+            {/* 
+            {(() => {
+                if (sessionState.user.id && sessionState.user.id === place.userId) {
+                    return (
+                        <>
+                            <button id='edit-place' onClick={handleEdit}>Edit</button>
+                            <button id='delete-place' onClick={handleDelete}>Delete</button>
+                        </>
+                    )
+                } else {
+                    return (
+                        <div>You are a User.</div>
+                    )
+                }
+            })()} */}
             {<PlaceReviews />}
         </div >
     )
