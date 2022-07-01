@@ -119,37 +119,27 @@ const placesReducer = (state = iState, action) => {
         case CREATE_PLACE:
             newState = { ...state, [action.place.id]: action.place };
             // console.log(action, "...CREATE_PLACE... in placesReducer")
-
-            // console.log(newState, "...CREATE_PLACE... in placesReducer")
             return newState;
         case GET_PLACES:
             newState = { ...state };
             action.places?.forEach(place => {
-                newState[place.id] = place;//flattemout
+                newState[place.id] = place;
             })
             // console.log(action, "...GET_PLACES... in placesReducer")
-            // console.log(newState, "...GET_PLACES... in placesReducer")
             return newState;
         case GET_PLACE:
             newState = { ...state };
-
             // console.log(action, "action...GET_PLACE... in placesReducer")
-            // console.log(newState, "State...GET_PLACE... in placesReducer")
-            newState[action.place.id] = action.place;// ???? wtf happened here?
+            newState[action.place.id] = action.place;
             return newState;
         case UPDATE_PLACE:
             newState = { ...state }
             // console.log(action.place, "action...UPDATE_PLACE... in placesReducer")
-
-            //state seems right: holds changes
-            //changes don't show on database
-
             newState[action.place.id] = action.place;
             return newState;
         case DELETE_PLACE:
             // console.log(action, 'action...DELETE_PLACE...')
             newState = { ...state }
-            // console.log('...DELETE_PLACE... how to refresh list?'); //don't see this.
             delete newState[action.placeId]
             return newState;
         default:
@@ -158,15 +148,3 @@ const placesReducer = (state = iState, action) => {
 }
 
 export default placesReducer;
-
-
-// case UPDATE_ITEM:
-// return {
-//     ...state,
-//     [action.item.id]: action.item
-//   };
-
-
-
-
-// history.push to main page

@@ -7,7 +7,7 @@ import { thunkGetPlace } from "../../store/place";
 
 const CreateReviewForm = () => {
     let { placeId } = useParams();
-    console.log(parseInt(placeId), placeId, 'placeId in PlaceReviews')
+    // console.log(parseInt(placeId), placeId, 'placeId in PlaceReviews')
     placeId = parseInt(placeId);
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
@@ -28,22 +28,13 @@ const CreateReviewForm = () => {
         return state.session.user;
     })
     const userId = user?.id;
-    const place = useSelector(state => state.placesState[placeId]);
-    console.log(place, ' is what is being reviewed in CreateReviewForm');
+    // const place = useSelector(state => state.placesState[placeId]);
     let reviews = useSelector(state => Object.values(state.reviewsState));
-    let reviewsArray = reviews.for
-    console.log(reviews, "this Place's reviews");
+    // const thisPlaceReviews = reviews.find(review => review.placeId === placeId);
 
-    const thisPlaceReviews = reviews.find(review => review.placeId === placeId);
-
-    // useEffect(() => { }, [])
+    // console.log(reviews, "this Place's reviews");
 
 
-    // const handleDelete = (e) => {
-    //     e.preventDefault();
-    //     // dispatch(thunkDeleteReview(reviewId));
-    //     history.push('/places/placeId')
-    // }
     const handleSubmit = (e) => {
         e.preventDefault();
         const review = { title, body, imageURL, placeId: placeId, userId: userId, rating }

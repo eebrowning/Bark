@@ -18,16 +18,14 @@ const Place = () => {
     const place = useSelector((state) => state.placesState[placeId]);
 
     useEffect(() => {
-        dispatch(thunkGetPlace(placeId));
-        dispatch(thunkGetAllReviews());
+        dispatch(thunkGetPlace(placeId));// keeps place on refresh
+        dispatch(thunkGetAllReviews());//gets reviews on place load
         // console.log('dispatched to thunkGetPlace')
     }, [dispatch]);
 
     const handleDelete = (e) => {
         e.preventDefault();
-
         dispatch(thunkDeletePlace(placeId));
-
         history.push('/places')
     }
 
