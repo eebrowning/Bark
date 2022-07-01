@@ -41,5 +41,12 @@ router.post(
         });
     }),
 );
+//demo User ?
+
+// router.get('/demo', async (req, res) => {
+//     const demoUser = await User.findByPk(1);
+
+//     loginUser(req, res, demoUser);
+// })
 
 module.exports = router;
