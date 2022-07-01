@@ -87,7 +87,7 @@ export const thunkDeleteReview = (reviewId) => async dispatch => {
         // const review = await res.json();
         const review = await res;
         console.log('Thunk, delete review: ', review)
-        dispatch(actionDeleteReview(review))
+        dispatch(actionDeleteReview(reviewId)); //needs to be id, not review.id
         // return review;
     }
 }
@@ -121,10 +121,10 @@ const reviewsReducer = (state = iState, action) => {
             return newState;
         case DELETE_REVIEW:
             console.log("this is the action DELETE_REVIEW reducer ===> ", action);
-            console.log(action.reviewId, 'action...DELETE_review...')
+            console.log(action.reviewId, 'action.reviewId.body in...DELETE_review...')
             newState = { ...state }
             // console.log('...DELETE_review... how to refresh list?');
-            delete newState[action.reviewId]
+            delete newState[action.reviewId]//not actually deleting here, your action.reviewId is a response object
             return newState;
         default:
             return state;
