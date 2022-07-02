@@ -31,7 +31,9 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'cascade',
       hooks: true
     })
-
+    Place.findAll({
+      where: []
+    })
 
   };
   return Place;

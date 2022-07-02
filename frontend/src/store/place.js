@@ -121,8 +121,8 @@ const placesReducer = (state = iState, action) => {
             // console.log(action, "...CREATE_PLACE... in placesReducer")
             return newState;
         case GET_PLACES:
-            newState = { ...state };
-            action.places?.forEach(place => {
+            newState = {};
+            action.places.forEach(place => {
                 newState[place.id] = place;
             })
             // console.log(action, "...GET_PLACES... in placesReducer")

@@ -1,3 +1,19 @@
 #profile-menu {
     color: rgb(61, 61, 137);
+    background-color: white;
+
+}
+
+#profile-menu:hover {
+    color: rgb(61, 61, 137);
+    background-color: rgb(138, 134, 134);
+
+}
+
+
+#nav-bar-ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
 }

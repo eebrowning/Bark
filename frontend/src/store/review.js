@@ -103,8 +103,8 @@ const reviewsReducer = (state = iState, action) => {
             console.log(newState, "...CREATE_review... in reviewsReducer")
             return newState;
         case GET_REVIEWS:
-            newState = { ...state };
-            action.reviews?.forEach(review => {
+            newState = {};
+            action.reviews.forEach(review => {
                 newState[review.id] = review;//flattemout
             })
             // console.log(action, "...GET_reviewS... in reviewsReducer")
