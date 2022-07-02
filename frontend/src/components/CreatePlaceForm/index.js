@@ -67,7 +67,7 @@ const CreatePlaceForm = () => {
                 />
                 <input
                     name='Image'
-                    placeholder="link .jpg/.jpeg/.png here"
+                    placeholder='jpg / jpeg format'
                     value={imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 />

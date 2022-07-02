@@ -32,10 +32,19 @@ const EditPlaceForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.log(place, '\n\n\n', 'PRE EDIT PLACE FORM', '\n\n')
+        console.log('====>', imageURL.toString().includes('jpg' || 'jpeg'), 'heres if the place\'s imageURL includes jpg or jpeg')
 
-        if (address !== place.address) { place.address = address; }
-        place.imageURL = imageURL;
-        place.type = type;
+
+        if (address !== place.address && address.length > 0) { place.address = address; }
+        if (imageURL !== place.imageURL && imageURL.length > 0) {//sets fine
+            place.imageURL = imageURL;
+        } else if (!imageURL) {
+            setImageURL(place.imageURL)
+        };
+
+
+        console.log(address, 'address', imageURL, 'imageURL', 'Submitted values.')
+        if (type) place.type = type;
         // console.log(place, '\n\n\n', 'EDIT PLACE FORM', '\n\n')
         setErrors([]);
         let updatedPlace = await dispatch(thunkUpdatePlace(place))
@@ -64,7 +73,7 @@ const EditPlaceForm = () => {
                 <input
                     required
                     name='address'
-                    placeholder={place.address}
+                    placeholder='enter an address'
                     defaultValue={place.address}
                     onChange={e => setAddress(e.target.value)}
                 />
@@ -79,10 +88,9 @@ const EditPlaceForm = () => {
                 <select
                     required
                     name='type'
-                    defaultValue={"Dog Park"}
                     onChange={e => setType(e.target.value)}
                 >
-                    <option></option>
+                    <option>Choose a venue</option>
                     <option>Dog Park</option>
                     <option>Bar/Restaurant</option>
                     <option>Park</option>
