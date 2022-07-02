@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import { demoLogin } from '../../store/session';
 
+
 function Navigation({ isLoaded }) {
     const sessionUser = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-
+    const history = useHistory()
     let sessionLinks;
 
     useEffect(() => {
@@ -49,7 +50,7 @@ function Navigation({ isLoaded }) {
     return (
         <ul id={'nav-bar-ul'}>
             <li>
-                <img id='nav-logo' src='https://fontmeme.com/permalink/220702/01a4e3f2e2dfca0efb0d85c9a5590637.png' />
+                <img onClick={() => history.push('/')} id='nav-logo' src='https://fontmeme.com/permalink/220702/01a4e3f2e2dfca0efb0d85c9a5590637.png' />
             </li>
 
             <li>
