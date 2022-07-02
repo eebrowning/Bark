@@ -60,7 +60,6 @@ const CreateReviewForm = () => {
                     {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
                 <label>Title</label>
-
                 <input
                     required
                     name="name"
@@ -90,10 +89,12 @@ const CreateReviewForm = () => {
                     name='rating'
                     placeholder="Rating"
                     value={rating}
+                    defaultValue="1"
                     onChange={e => setRating(e.target.value)}
                 >
-                    <option>1</option>
-                    <option>2</option>
+                    <option hidden disabled='disabled'></option>
+                    <option selected>1</option>
+                    <option >2</option>
                     <option>3</option>
                     <option>4</option>
                     <option>5</option>
