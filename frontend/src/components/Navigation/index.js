@@ -49,6 +49,10 @@ function Navigation({ isLoaded }) {
     return (
         <ul id={'nav-bar-ul'}>
             <li>
+                <img id='nav-logo' src='https://fontmeme.com/permalink/220702/01a4e3f2e2dfca0efb0d85c9a5590637.png' />
+            </li>
+
+            <li>
                 <NavLink exact to="/">Home</NavLink>
             </li>
 

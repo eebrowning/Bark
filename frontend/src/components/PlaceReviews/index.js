@@ -69,7 +69,7 @@ const PlaceReviews = () => {
                         <span key={review.id}>
                             <span id={`place-box-${review.id}`} >
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
-                                <div id={`rating-${review.id}`}>Rating: {review.rating}</div>
+                                <div id={`rating-${review.id}`}>Rating: {review.rating}/5</div>
                                 <p> {review.body}</p>
                             </span>
 
