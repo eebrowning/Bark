@@ -6,6 +6,7 @@ import { thunkDeletePlace, thunkGetAllPlaces } from "../../store/place";
 import { thunkGetPlace } from "../../store/place";
 import { thunkGetAllReviews } from "../../store/review";
 import PlaceReviews from "../PlaceReviews";
+import './place.css';
 
 const Place = () => {
     let history = useHistory();
@@ -38,7 +39,7 @@ const Place = () => {
     }
     if (!place) return null;
     return (
-        <div>
+        <div id={'place-view'}>
             <h2>This Place</h2>
             {place && (
 
