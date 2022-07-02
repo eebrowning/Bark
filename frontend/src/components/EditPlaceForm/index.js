@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 
 
-const EditPlaceForm = (props) => {
+const EditPlaceForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     // const [name, setName] = useState('');
@@ -33,7 +33,7 @@ const EditPlaceForm = (props) => {
         e.preventDefault();
         // console.log(place, '\n\n\n', 'PRE EDIT PLACE FORM', '\n\n')
 
-        place.address = address;
+        if (address !== place.address) { place.address = address; }
         place.imageURL = imageURL;
         place.type = type;
         // console.log(place, '\n\n\n', 'EDIT PLACE FORM', '\n\n')
@@ -60,6 +60,7 @@ const EditPlaceForm = (props) => {
                 <ul>
                     {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
+                <label>Address</label>
                 <input
                     required
                     name='address'
@@ -67,15 +68,18 @@ const EditPlaceForm = (props) => {
                     defaultValue={place.address}
                     onChange={e => setAddress(e.target.value)}
                 />
+                <label>Image URL</label>
                 <input
                     name='Image'
-                    placeholder={place.imageURL}
+                    placeholder={'jpg / jpeg format'}
                     defaultValue={place.imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 />
+                <label>Venue Type</label>
                 <select
                     required
                     name='type'
+                    defaultValue={"Dog Park"}
                     onChange={e => setType(e.target.value)}
                 >
                     <option></option>
@@ -87,9 +91,9 @@ const EditPlaceForm = (props) => {
 
                 <button>Submit</button>
             </form>
-            <div>
+            {/* <div>
                 { }
-            </div>
+            </div> */}
         </section>
     )
 

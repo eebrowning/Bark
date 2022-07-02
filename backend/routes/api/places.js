@@ -15,18 +15,38 @@ const validatePlace = [
         .isLength({ min: 3 })
         .isLength({ max: 30 })
         .withMessage('Please provide a Place Name between 3 and 30 characters.'),
+    // .custom(value => {
+    //     const place = Place.findOne({ where: { name: value } });
+    //     const places = Place.findAll({ where: { name: value } })
+    //     console.log('\n\n\n', value, "==>this is the name being passed", '\n\n\n')
+    //     console.log('\n\n\n', places, "==>this is the name being changed", '\n\n\n')
+    //     if (place.dataValues) {
+    //         throw new Error('Please choose a new Place name');
+    //     }
+    //     return true;
+    // })
     check('address')
         .exists({ checkFalsy: true })
         .isLength({ min: 3 })
         .isLength({ max: 250 })
-        .withMessage('Please provide an Address between 5 and 250 characters.'),
+        .withMessage('Please provide an Address between 5 and 250 characters.')
+        .custom(value => {
+            const place = Place.findOne({ where: { address: value } });
+            // const places = Place.findAll({ where: { address: value } })
+            console.log('\n\n\n', value, "==>this is the address being passed", '\n\n\n')
+            console.log('\n\n\n', place.dataValues, "==>this is the address being changed", '\n\n\n')
+            if (place.dataValues) {
+                throw new Error('Please choose a new Address name');
+            }
+            return true;
+        }),
     check('type')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a Place Type.'),
     // check('imageURL')
     //     .isURL()
     //     .withMessage('Please provide an image link (jpg/jpeg format only).'),
-    handleValidationErrors
+    // handleValidationErrors
 ]
 
 
