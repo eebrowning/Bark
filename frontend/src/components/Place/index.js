@@ -46,7 +46,7 @@ const Place = () => {
                     <span >
                         <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
                         <h2 id={`place-${place.id}`}>{place.name}</h2>
-                        <h6>{place.avgRating}</h6>
+                        {/* <h6>{place.avgRating}</h6> */}
                         <h3>{place.address}</h3>
                         <p>Do you recommend this place?</p>
                         <p>Something about this place</p>

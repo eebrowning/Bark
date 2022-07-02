@@ -64,7 +64,7 @@ const PlaceReviews = () => {
                         </span>
 
                     )
-                } else {
+                } else if (review.placeId == placeId) {
                     return (
                         <span key={review.id}>
                             <span id={`place-box-${review.id}`} >

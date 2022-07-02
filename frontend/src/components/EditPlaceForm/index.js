@@ -33,8 +33,6 @@ const EditPlaceForm = (props) => {
         e.preventDefault();
         // console.log(place, '\n\n\n', 'PRE EDIT PLACE FORM', '\n\n')
 
-
-
         place.address = address;
         place.imageURL = imageURL;
         place.type = type;
@@ -66,22 +64,19 @@ const EditPlaceForm = (props) => {
                     required
                     name='address'
                     placeholder={place.address}
-                    value={address}
+                    defaultValue={place.address}
                     onChange={e => setAddress(e.target.value)}
                 />
                 <input
                     name='Image'
                     placeholder={place.imageURL}
-                    value={imageURL}
+                    defaultValue={place.imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 />
                 <select
                     required
                     name='type'
-                    placeholder={place.type}
-                    value={type}
                     onChange={e => setType(e.target.value)}
-
                 >
                     <option></option>
                     <option>Dog Park</option>
