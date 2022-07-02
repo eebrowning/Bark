@@ -47,12 +47,16 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul>
+        <ul id={'nav-bar-ul'}>
             <li>
                 <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-
             </li>
+
+            <li>
+                {isLoaded && sessionLinks}
+            </li>
+
+
         </ul>
     );
 }

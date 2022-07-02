@@ -54,7 +54,7 @@ router.put('/:placeId', validatePlace, asyncHandler(async (req, res) => {
     const { placeId } = req.params;
     const placeObj = await Place.findByPk(placeId);
 
-    if (!req.body.imageURL.includes('jpg' || 'png')) req.body.imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
+    //  if (!req.body.imageURL.includes('jpg' || 'png')) req.body.imageURL = "https://designlooter.com/images/paw-prints-svg-8.png";
 
     console.log(req.body.imageURL, 'place obj in places PUT ROUTE')
     await placeObj.update(req.body);//sequelize!
