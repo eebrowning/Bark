@@ -45,9 +45,19 @@ const Place = () => {
                 <div id={`place-box-${place.id}`}>
                     <span >
                         <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
-                        <h2 id={`place-${place.id}`}>{place.name}</h2>
-                        {/* <h6>{place.avgRating}</h6> */}
-                        <h3>{place.address}</h3>
+                        <div id={`name-${place.id}`}>
+                            <h5>Place:</h5>
+                            <h2 >{place.name}</h2>
+                        </div>
+                        <div id={`type-${place.id}`}>
+                            <h5>Venue:</h5>
+                            <h2 >{place.type}</h2>
+                        </div>
+                        <div id={`address-${place.id}`}>
+                            <h5>Address:</h5>
+                            <h2 >{place.address}</h2>
+                        </div>
+
                         <p>Do you recommend this place?</p>
                         <p>Something about this place</p>
 

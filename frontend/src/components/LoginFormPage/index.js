@@ -36,6 +36,7 @@ function LoginFormPage() {
                 <input
                     type="text"
                     value={credential}
+                    placeholder={'case-sensitive'}
                     onChange={(e) => setCredential(e.target.value)}
                     required
                 />
@@ -45,6 +46,8 @@ function LoginFormPage() {
                 <input
                     type="password"
                     value={password}
+                    placeholder={'password'}
+
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
