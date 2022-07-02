@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { thunkCreatePlace } from "../../store/place";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
-import { thunkCreateReview, thunkDeleteReview } from "../../store/review";
+import { thunkCreateReview } from "../../store/review";
 import { thunkGetPlace } from "../../store/place";
 
 const CreateReviewForm = () => {

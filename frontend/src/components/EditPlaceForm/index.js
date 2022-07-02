@@ -11,11 +11,17 @@ const EditPlaceForm = () => {
     const [address, setAddress] = useState('')
     const [type, setType] = useState('')
     const [imageURL, setImageURL] = useState("");
-    const [errors, setErrors] = useState('')
+    const [errors, setErrors] = useState('');
+    const [state, setState] = useState()
     const { placeId } = useParams();
 
 
     const place = useSelector((state) => state.placesState[placeId]);
+    console.log("=====>", place, 'place in edit place form')
+    const places = useSelector(state => Object.values(state.placesState))
+    console.log("===== >", places, 'places in edit place form')
+
+    // const places =
     const user = useSelector(state => {
         return state.session.user;
     })
@@ -23,7 +29,8 @@ const EditPlaceForm = () => {
 
 
     useEffect(() => {
-        dispatch(thunkGetPlace(placeId));
+        // dispatch(thunkGetPlace(placeId));
+        dispatch(thunkGetAllPlaces())
         console.log('dispatched to thunkGetPlace')
     }, [dispatch]);
 
@@ -34,7 +41,6 @@ const EditPlaceForm = () => {
         // console.log(place, '\n\n\n', 'PRE EDIT PLACE FORM', '\n\n')
         console.log('====>', imageURL.toString().includes('jpg' || 'jpeg'), 'heres if the place\'s imageURL includes jpg or jpeg')
 
-
         if (address !== place.address && address.length > 0) { place.address = address; }
         if (imageURL !== place.imageURL && imageURL.length > 0) {//sets fine
             place.imageURL = imageURL;
@@ -42,8 +48,6 @@ const EditPlaceForm = () => {
             setImageURL(place.imageURL)
         };
 
-
-        console.log(address, 'address', imageURL, 'imageURL', 'Submitted values.')
         if (type) place.type = type;
         // console.log(place, '\n\n\n', 'EDIT PLACE FORM', '\n\n')
         setErrors([]);
@@ -62,8 +66,7 @@ const EditPlaceForm = () => {
         return updatedPlace;
     }
 
-
-    return (
+    if (place) return (
         <section id="place-form-section">
             <form id="place-form" onSubmit={handleSubmit}>
                 <ul>
