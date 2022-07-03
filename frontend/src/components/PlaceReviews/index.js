@@ -75,7 +75,7 @@ const PlaceReviews = () => {
                     )
                 } else if (review.placeId == placeId) {
                     return (
-                        <span key={review.id}>
+                        <span id='review-card' key={review.id}>
                             <span id={`place-box-${review.id}`} >
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
                                 <p>{review.body}</p>
