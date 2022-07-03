@@ -52,7 +52,7 @@ const CreatePlaceForm = () => {
                 <input
                     required
                     name="name"
-                    placeholder="place name"
+                    placeholder="Place name"
                     type="string"
                     value={name}
                     onChange={e => setName(e.target.value)}
@@ -60,13 +60,13 @@ const CreatePlaceForm = () => {
                 <input
                     required
                     name='address'
-                    placeholder="place address"
+                    placeholder="Place address"
                     value={address}
                     onChange={e => setAddress(e.target.value)}
                 />
                 <input
                     name='Image'
-                    placeholder='jpg / jpeg format'
+                    placeholder='Image in jpg / jpeg format'
                     value={imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 />
@@ -76,6 +76,7 @@ const CreatePlaceForm = () => {
                     name='type'
                     placeholder={type}
                     value={type}
+                    defaultValue='Venue type'
                     onChange={e => setType(e.target.value)}
 
                 >
