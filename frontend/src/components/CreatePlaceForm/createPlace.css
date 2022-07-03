@@ -2,8 +2,13 @@ form>input {
     width: 200px;
 }
 
+#place-form-box {
+    display: flex;
+    justify-content: center;
+}
 
 #place-form {
+    background-color: whitesmoke;
     border: 1px darkgray solid;
     margin-left: 30px;
     margin-top: 75px;
@@ -11,6 +16,7 @@ form>input {
     width: 60%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: space-evenly;
 }
 

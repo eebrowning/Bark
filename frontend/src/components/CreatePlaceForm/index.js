@@ -45,7 +45,7 @@ const CreatePlaceForm = () => {
 
 
     return (
-        <section id="place-form-section">
+        <section id="place-form-box">
             <form id="place-form" onSubmit={handleSubmit}>
 
                 <h2>Create a new place:</h2>
