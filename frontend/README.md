@@ -1,5 +1,5 @@
 # Bark: a yelp clone
-[Tech used](### Technologies Used)
+[Tech used](### Technologies-Used)
 
 Bark is a clone of Yelp, the eponymous business-review site, but geared towards places you can take your dog along.
 The project is primarily built using the following: 
