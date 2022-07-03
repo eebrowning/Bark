@@ -4,9 +4,28 @@
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    /* z-index: -1; */
+    left: 50px
+        /* z-index: -1; */
+}
+
+#review-card {
+    width: 40%;
+    border: 1px gray solid;
 }
 
 #add-a-review:hover {
     cursor: hand;
+}
+
+/* #reviews-header-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+} */
+
+#reviews-header {
+    border-radius: 0;
+    width: 150px;
+    border-bottom: 1px gray solid;
+    text-align: center;
 }

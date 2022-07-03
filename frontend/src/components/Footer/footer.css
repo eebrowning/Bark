@@ -3,9 +3,24 @@
 }
 
 #footer-ul {
+    position: relative;
     color: #48C2F9;
     display: flex;
     justify-content: space-around;
     align-items: center;
     list-style: none;
+    bottom: 15px;
+}
+
+footer {
+
+    position: fixed;
+    height: 40px;
+    background-color: red;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+
 }
