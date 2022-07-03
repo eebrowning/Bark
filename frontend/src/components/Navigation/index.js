@@ -32,8 +32,8 @@ function Navigation({ isLoaded }) {
     if (sessionUser) {
         sessionLinks = (
             <>
-                <ProfileButton user={sessionUser} />
                 <NavLink to='/create'>New Place</NavLink>
+                <ProfileButton user={sessionUser} />
             </>
         );
     } else {
@@ -54,10 +54,10 @@ function Navigation({ isLoaded }) {
             </li>
 
             <li>
-                <NavLink exact to="/">Home</NavLink>
             </li>
 
             <li>
+                <NavLink exact to="/">Home</NavLink>
                 {isLoaded && sessionLinks}
             </li>
 

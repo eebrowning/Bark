@@ -40,15 +40,15 @@ const Place = () => {
     if (!place) return null;
     return (
         <div id={'place-view'}>
-            <h2>This Place</h2>
             {place && (
                 <div id={`place-box-${place.id}`}>
+
+                    <div id={`name-${place.id}`}>
+                        <h5>Place:</h5>
+                        <h2 >{place.name}</h2>
+                    </div>
                     <span >
                         <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
-                        <div id={`name-${place.id}`}>
-                            <h5>Place:</h5>
-                            <h2 >{place.name}</h2>
-                        </div>
                         <div id={`type-${place.id}`}>
                             <h5>Venue:</h5>
                             <h2 >{place.type}</h2>
@@ -58,16 +58,16 @@ const Place = () => {
                             <h2 >{place.address}</h2>
                         </div>
 
-                        <p>Do you recommend this place?</p>
-                        <p>Something about this place</p>
+                        {(sessionState.user && sessionState.user.id === place.userId) && (
+                            <>
+                                <button id='edit-place' onClick={handleEdit}>Edit</button>
+                                <button id='delete-place' onClick={handleDelete}>Delete</button>
+                            </>
+                        )}
+                        <p>Do you recommend this place? Say something below!</p>
+                        {/* <p>Something about this place</p> */}
 
                     </span>
-                    {(sessionState.user && sessionState.user.id === place.userId) && (
-                        <>
-                            <button id='edit-place' onClick={handleEdit}>Edit</button>
-                            <button id='delete-place' onClick={handleDelete}>Delete</button>
-                        </>
-                    )}
                 </div>
             )}
 
