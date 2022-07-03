@@ -1,0 +1,11 @@
+#footer {
+    background: #00000035
+}
+
+#footer-ul {
+    color: #48C2F9;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+}

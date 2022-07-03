@@ -12,8 +12,8 @@ const router = express.Router();
 const validatePlace = [
     check('name')
         .exists({ checkFalsy: true })
-        .isLength({ min: 3 })
         .isLength({ max: 30 })
+        .isLength({ min: 3 })
         .withMessage('Please provide a Place Name between 3 and 30 characters.'),
     // .custom(value => {
     //     const place = Place.findOne({ where: { name: value } });

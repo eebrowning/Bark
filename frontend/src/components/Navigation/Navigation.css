@@ -70,6 +70,12 @@
 }
 
 
+
+#footer {
+    background-color: red;
+    ;
+}
+
 #root {
     border: 1px gray solid
 }

@@ -48,24 +48,25 @@ function Navigation({ isLoaded }) {
     }
 
     return (
-        <ul id={'nav-bar-ul'}>
-            <li>
-                {/* <img onClick={() => history.push('/')} id='nav-logo' src='https://fontmeme.com/permalink/220702/01a4e3f2e2dfca0efb0d85c9a5590637.png' /> */}
+        <>
+            <ul id={'nav-bar-ul'}>
+                <li>
+                    {/* <img onClick={() => history.push('/')} id='nav-logo' src='https://fontmeme.com/permalink/220702/01a4e3f2e2dfca0efb0d85c9a5590637.png' /> */}
 
-                <img onClick={() => history.push('/')} id='nav-logo' src='https://fontmeme.com/permalink/220703/1ef7f1b8fbea632b7949072dce294a0b.png' />
+                    <img onClick={() => history.push('/')} id='nav-logo' src='https://fontmeme.com/permalink/220703/1ef7f1b8fbea632b7949072dce294a0b.png' />
 
-            </li>
+                </li>
 
-            <li>
-            </li>
+                <li>
+                </li>
 
-            <li id={'right-nav-box'}>
-                <NavLink exact to="/">Home</NavLink>
-                {isLoaded && sessionLinks}
-            </li>
+                <li id={'right-nav-box'}>
+                    <NavLink exact to="/">Home</NavLink>
+                    {isLoaded && sessionLinks}
+                </li>
 
-
-        </ul>
+            </ul>
+        </>
     );
 }
 
