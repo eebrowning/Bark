@@ -1,11 +1,10 @@
 # Bark: a yelp clone
-
+[Tech used](### Technologies Used)
 
 Bark is a clone of Yelp, the eponymous business-review site, but geared towards places you can take your dog along.
-The project is primarily built using the following 
+The project is primarily built using the following: 
 
-## Technologies Used
-- 
+### Technologies Used 
 
 - PostgreSQL(sequelize.js)
 - Express.js
@@ -13,17 +12,21 @@ The project is primarily built using the following
 - Node.js
 - Heroku
 
+Data is made available on every page through manipulating the state and data store with Redux: At no point is the page's context lost due to refreshes or reloads.
 
-Live demo app:
+ ### Live demo app:
 
 - Bark: https://bark-eeb828.herokuapp.com/
+- Demo user available--feel free to sign up!
 
 
-Demo/Test locally:
-- After navigating to the Bark directory, open a split terminal to navigate to the backend and frontend directories. 
+### Demo/Test locally:
+- download or clone from repo: https://github.com/eebrowning/Bark
+- After navigating to the Bark directory, open a split terminal to navigate to the backend and frontend directories, one in each. 
 - run 'npm install' in each.
-- run 'npm install' in each.
+- run 'npm start' in each.
 - localhost:3000 will open on your default browser, and the Bark app will be available for testing locally
+- Demo user available
 
 
 
