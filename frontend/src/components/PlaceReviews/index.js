@@ -11,9 +11,10 @@ const PlaceReviews = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const sessionState = useSelector((state) => state.session);
-    // const loggedInUserId = sessionState.user.id;
 
 
+    const user = useSelector(state => state.session);
+    console.log(user, 'this is the user from useSeletor')
     const reviewsArray = useSelector(state => Object.values(state.reviewsState))
     // console.log(reviewsArray, "reviews state array, PlaceReviews");
 
@@ -45,7 +46,9 @@ const PlaceReviews = () => {
 
     return (
         <span id="reviews-span">
-            <button id='add-a-review' onClick={handleClick}>Add a Review!</button>
+            {sessionState.user && (
+                <button id='add-a-review' onClick={handleClick}>Add a Review!</button>
+            )}
             <h1>Reviews:</h1>
             {reviewsArray?.map((review) => {
                 if (sessionState.user && review.placeId == placeId) {
