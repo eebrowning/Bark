@@ -69,6 +69,7 @@ const EditPlaceForm = () => {
     if (place) return (
         <section id="place-form-section">
             <form id="place-form" onSubmit={handleSubmit}>
+                <h2>Edit {place.name}:</h2>
                 <ul>
                     {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>

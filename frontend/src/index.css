@@ -1,97 +1,10 @@
-/* TODO Add site wide styles */
 body {
     margin: 0;
     width: 100%;
 }
 
-
 * {
-    /* background-color: rgb(125, 116, 141); */
-    /* background-color: whitesmoke; */
+
     font-family: sans-serif;
-    border-radius: 3px;
-}
-
-
-
-
-
-#places-view {
-    /* background-color: rgb(143, 53, 53); */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.place-list {
-    /* border: 1px red solid; */
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 85%;
-    height: 60%;
-    /* background-color: rgb(157, 147, 147); */
-    border: 5px darkgray solid;
-}
-
-.place-card {
-    border: 1px rgb(235, 233, 233) solid;
-    border-radius: 4px;
-    width: 45%;
-    height: 200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    margin-top: 10px;
-
-}
-
-.place-card:hover {
-    cursor: hand;
-
-}
-
-.place-card>h2 {
-    height: 50px;
-    text-align: center;
-}
-
-.place-card>img {
-    height: 200px;
-    width: 200px;
-}
-
-#banner-box {
-    margin-bottom: 0;
-    height: 750px
-}
-
-#banner-image {
-    width: 100%;
-    height: 100%;
-    max-width: 100%;
-    height: auto;
-    width: auto\9;
-}
-
-
-#over-banner-image {
-    color: white;
-    font-weight: bolder;
-    position: relative;
-    bottom: 200px;
-    left: 25px;
-    text-align: center;
-}
-
-
-#sub-banner-text {
-    height: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* box-sizing: border-box; */
+    /* border-radius: 4px; */
 }

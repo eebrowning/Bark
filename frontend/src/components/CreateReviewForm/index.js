@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
 import { thunkCreateReview } from "../../store/review";
 import { thunkGetPlace } from "../../store/place";
+import "./createReview.css"
 
 const CreateReviewForm = () => {
     let { placeId } = useParams();
@@ -31,7 +32,7 @@ const CreateReviewForm = () => {
         return state.session.user;
     })
     const userId = user?.id;
-    // const place = useSelector(state => state.placesState[placeId]);
+    const place = useSelector(state => state.placesState[placeId]);
     let reviews = useSelector(state => Object.values(state.reviewsState));
     // const thisPlaceReviews = reviews.find(review => review.placeId === placeId);
 
@@ -53,8 +54,8 @@ const CreateReviewForm = () => {
     }
     return (
         <span id="reviews-span">
-            <h1>How'd it go with the doggo?</h1>
             <form id="review-form" onSubmit={handleSubmit}>
+                <h1>How'd it go with the doggo at {place.name}?</h1>
                 <ul>
                     {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
@@ -92,7 +93,7 @@ const CreateReviewForm = () => {
                     onChange={e => setRating(e.target.value)}
                 >
                     <option hidden disabled='disabled'></option>
-                    <option selected>1</option>
+                    <option >1</option>
                     <option >2</option>
                     <option>3</option>
                     <option>4</option>
@@ -100,7 +101,7 @@ const CreateReviewForm = () => {
 
                 </select>
 
-                <button>Submit Review</button>
+                <button id={'submit-review'}>Submit Review</button>
             </form>
         </span>
     )

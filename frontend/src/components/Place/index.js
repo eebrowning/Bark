@@ -41,22 +41,20 @@ const Place = () => {
     return (
         <div id={'place-view'}>
             {place && (
-                <div id={`place-box-${place.id}`}>
-
-                    <div id={`name-${place.id}`}>
-                        <h5>Place:</h5>
-                        <h2 >{place.name}</h2>
-                    </div>
+                <div id={`place-box`}>
                     <span >
-                        <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
-                        <div id={`type-${place.id}`}>
-                            <h5>Venue:</h5>
-                            <h2 >{place.type}</h2>
-                        </div>
-                        <div id={`address-${place.id}`}>
-                            <h5>Address:</h5>
-                            <h2 >{place.address}</h2>
-                        </div>
+                        <img id={'place-image'} height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
+                        <span id={'place-details'}>
+                            <div idi={'place-name'} className={`name-${place.id}`}>
+                                <h2 >{place.name}</h2>
+                            </div>
+                            <div id={`place-address`}>
+                                <h2 >{place.address}</h2>
+                            </div>
+                            <div id={`place-type`}>
+                                <h2 >{place.type}</h2>
+                            </div>
+                        </span>
 
                         {(sessionState.user && sessionState.user.id === place.userId) && (
                             <>
@@ -64,7 +62,6 @@ const Place = () => {
                                 <button id='delete-place' onClick={handleDelete}>Delete</button>
                             </>
                         )}
-                        <p>Do you recommend this place? Say something below!</p>
                         {/* <p>Something about this place</p> */}
 
                     </span>

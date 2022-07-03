@@ -1,0 +1,12 @@
+#reviews-span {
+    position: relative;
+    /* top: -50px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* z-index: -1; */
+}
+
+#add-a-review:hover {
+    cursor: hand;
+}

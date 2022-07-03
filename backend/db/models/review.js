@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Review = sequelize.define('Review', {
     title: {
-      type: DataTypes.STRING(80),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     body: {
