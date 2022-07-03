@@ -11,6 +11,7 @@
 #review-card {
     width: 40%;
     border: 1px gray solid;
+    padding: 15px;
 }
 
 #add-a-review:hover {
