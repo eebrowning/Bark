@@ -89,7 +89,6 @@ const CreateReviewForm = () => {
                     name='rating'
                     placeholder="Rating"
                     value={rating}
-                    defaultValue="1"
                     onChange={e => setRating(e.target.value)}
                 >
                     <option hidden disabled='disabled'></option>
