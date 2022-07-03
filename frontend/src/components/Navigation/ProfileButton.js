@@ -33,7 +33,11 @@ function ProfileButton({ user }) {
     return (
         <>
             <button id='profile-menu' onClick={openMenu}>
-                <i className="fas fa-user-circle" />
+                {/* <i className="fas fa-user-circle" /> */}
+
+                <img height='15x' width={'15px'} src="https://www.downloadclipart.net/large/42487-paw-print-clipart.png" />
+                <p>user</p>
+
             </button>
             {showMenu && (
                 <ul className="profile-dropdown">

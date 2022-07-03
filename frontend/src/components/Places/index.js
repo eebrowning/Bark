@@ -41,24 +41,30 @@ const Places = () => {
 
     const handleClick = ((e) => {
         e.preventDefault();
-        const placeId = e.target.id.split('-')[1]
+        const placeId = e.target.id.split('-')[2]
 
         history.push(`/places/${placeId}`)
     })
 
     return (
         <div id={'places-view'}>
-            <img id='banner-image' src='http://www.newsilike.in/wp-content/uploads/2016/10/Dog-Parks-India.jpg' />
+            <span id='banner-box'>
+                <img id='banner-image' src='http://www.newsilike.in/wp-content/uploads/2016/10/Dog-Parks-India.jpg' />
+                <div id='over-banner-image'>
+                    <h2>Bark has all the fun places for you and your pup!</h2>
+                    <h3>Scroll down to explore</h3>
+                </div>
+            </span>
             <div id='sub-banner-text'><h2>Places for your Pup</h2></div>
             {!placesArr.length && <span>No places available right now.</span>}
             <ul className="place-list" >
                 {placesArr?.map((place) => (
-                    <span key={place.id} id={`place-box-${place.id}`} className={'place-card'} >
-                        <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
-                        <div>
-                            <h2 id={`place-${place.id}`} onClick={handleClick}>{place.name}</h2>
+                    <span key={place.id} id={`place-box-${place.id}`} className={'place-card'} onClick={handleClick}>
+                        <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt" id={`place-img-${place.id}`}></img>
+                        <div id={`place-div-${place.id}`}>
+                            <h2 id={`place-h2-${place.id}`} onClick={handleClick}>{place.name}</h2>
                             {/* <h6 id={`avgrating-${place.id}`}>{place.avgRating}</h6> */}
-                            <p>{place.type}</p>
+                            <p id={`place-p-${place.id}`}>{place.type}</p>
                         </div>
                     </span>
                 ))}

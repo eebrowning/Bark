@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { thunkCreatePlace } from "../../store/place";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
-
+import "./createPlace.css"
 
 const CreatePlaceForm = () => {
     const dispatch = useDispatch();

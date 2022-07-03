@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { thunkGetAllPlaces, thunkGetPlace, thunkUpdatePlace } from "../../store/place";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from 'react-router-dom';
-
+import './editPlace.css'
 
 const EditPlaceForm = () => {
     const dispatch = useDispatch();
