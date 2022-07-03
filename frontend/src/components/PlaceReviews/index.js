@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { thunkGetPlace } from "../../store/place"
 import { thunkCreateReview, thunkDeleteReview, thunkGetAllReviews } from '../../store/review'
-
+import './reviews.css'
 
 const PlaceReviews = () => {
     const { placeId } = useParams();
@@ -45,8 +45,7 @@ const PlaceReviews = () => {
 
     return (
         <span id="reviews-span">
-            <p>Do you recommend this place?</p>
-            <button onClick={handleClick}>Add a Review!</button>
+            <button id='add-a-review' onClick={handleClick}>Add a Review!</button>
             <h1>Reviews:</h1>
             {reviewsArray?.map((review) => {
                 if (sessionState.user && review.placeId == placeId) {
@@ -54,7 +53,9 @@ const PlaceReviews = () => {
                         <span key={review.id}>
                             <span id={`place-box-${review.id}`} >
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
-                                <div id={`rating-${review.id}`}>{review.rating} Star</div>
+                                <div id={`rating-${review.id}`}>Rating: {review.rating}/5</div>
+                                <p>{review.body}</p>
+
                             </span>
                             {sessionState.user.id === review.userId && (
                                 <>
@@ -71,8 +72,8 @@ const PlaceReviews = () => {
                         <span key={review.id}>
                             <span id={`place-box-${review.id}`} >
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
+                                <p>{review.body}</p>
                                 <div id={`rating-${review.id}`}>Rating: {review.rating}/5</div>
-                                <p> {review.body}</p>
                             </span>
 
                         </span>

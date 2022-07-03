@@ -55,7 +55,7 @@ const Places = () => {
                     <h3>Scroll down to explore</h3>
                 </div>
             </span>
-            <div id='sub-banner-text'><h2>Places for your Pup</h2></div>
+            {/* <div id='sub-banner-text'><h2>Places for your Pup</h2></div> */}
             {!placesArr.length && <span>No places available right now.</span>}
             <ul className="place-list" >
                 {placesArr?.map((place) => (

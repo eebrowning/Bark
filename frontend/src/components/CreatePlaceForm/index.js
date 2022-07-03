@@ -47,9 +47,8 @@ const CreatePlaceForm = () => {
     return (
         <section id="place-form-section">
             <form id="place-form" onSubmit={handleSubmit}>
-                <ul>
-                    {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>
+
+                <h2>Create a new place:</h2>
                 <input
                     required
                     name="name"
@@ -87,7 +86,12 @@ const CreatePlaceForm = () => {
 
                 </select>
 
-                <button>Submit Place</button>
+                <div>
+                    <ul>
+                        {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>
+                    <button>Submit Place</button>
+                </div>
             </form>
 
         </section>

@@ -41,7 +41,7 @@ function Navigation({ isLoaded }) {
             <>
                 <NavLink to="/login">Log In</NavLink>
                 <NavLink to="/signup">Sign Up</NavLink>
-                <button onClick={handleClick}>Demo User</button>
+                <button id={'demo-login'} onClick={handleClick}>Demo User</button>
 
             </>
         );
@@ -59,7 +59,7 @@ function Navigation({ isLoaded }) {
             <li>
             </li>
 
-            <li>
+            <li id={'right-nav-box'}>
                 <NavLink exact to="/">Home</NavLink>
                 {isLoaded && sessionLinks}
             </li>
