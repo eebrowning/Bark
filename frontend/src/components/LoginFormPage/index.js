@@ -27,33 +27,36 @@ function LoginFormPage() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-            </ul>
-            <label>
-                Username or Email
-                <input
-                    type="text"
-                    value={credential}
-                    placeholder={'case-sensitive'}
-                    onChange={(e) => setCredential(e.target.value)}
-                    required
-                />
-            </label>
-            <label>
-                Password
-                <input
-                    type="password"
-                    value={password}
-                    placeholder={'password'}
+        <span id={'login-box'}>
 
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                />
-            </label>
-            <button type="submit">Log In</button>
-        </form>
+            <form id={'login-form'} onSubmit={handleSubmit}>
+                <ul>
+                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                </ul>
+                <label>
+                    Username or Email
+                    <input
+                        type="text"
+                        value={credential}
+                        placeholder={'case-sensitive'}
+                        onChange={(e) => setCredential(e.target.value)}
+                        required
+                    />
+                </label>
+                <label>
+                    Password
+                    <input
+                        type="password"
+                        value={password}
+                        placeholder={'password'}
+
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </label>
+                <button type="submit">Log In</button>
+            </form>
+        </span>
     );
 }
 

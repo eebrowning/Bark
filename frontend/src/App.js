@@ -28,11 +28,12 @@ function App() {
           <Route path="/login">
             <LoginFormPage />
           </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+
           <Route path='/create'>
             <CreatePlaceForm />
+          </Route>
+          <Route path="/signup">
+            <SignupFormPage />
           </Route>
           <Route exact path={['/', '/places']}>
             <Places />
