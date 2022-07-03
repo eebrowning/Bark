@@ -13,8 +13,12 @@ const validateReview = [
     check('title')
         .exists({ checkFalsy: true })
         .isLength({ max: 30 })
+        .withMessage('Please provide a title shorter than 30 characters.'),
+    check('title')
+        .exists({ checkFalsy: true })
         .isLength({ min: 3 })
-        .withMessage('Please provide a title between 3 and 30 characters.'),
+        .withMessage('Please provide a title longer than 3 characters.'),
+
     check('body')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a review.'),
