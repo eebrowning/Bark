@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { thunkGetAllPlaces, thunkUpdatePlace } from "../../store/place";
 import { thunkGetAllReviews } from "../../store/review";
-
+import "./index.css"
 
 const Places = () => {
     const history = useHistory();
@@ -48,15 +48,18 @@ const Places = () => {
 
     return (
         <div id={'places-view'}>
-            <h2>Places for your Pup</h2>
+            <img id='banner-image' src='http://www.newsilike.in/wp-content/uploads/2016/10/Dog-Parks-India.jpg' />
+            <div id='sub-banner-text'><h2>Places for your Pup</h2></div>
             {!placesArr.length && <span>No places available right now.</span>}
             <ul className="place-list" >
                 {placesArr?.map((place) => (
                     <span key={place.id} id={`place-box-${place.id}`} className={'place-card'} >
                         <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
-                        <h2 id={`place-${place.id}`} onClick={handleClick}>{place.name}</h2>
-                        {/* <h6 id={`avgrating-${place.id}`}>{place.avgRating}</h6> */}
-                        <p>Do you recommend this place?</p>
+                        <div>
+                            <h2 id={`place-${place.id}`} onClick={handleClick}>{place.name}</h2>
+                            {/* <h6 id={`avgrating-${place.id}`}>{place.avgRating}</h6> */}
+                            <p>{place.type}</p>
+                        </div>
                     </span>
                 ))}
             </ul>

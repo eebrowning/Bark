@@ -45,6 +45,8 @@ const PlaceReviews = () => {
 
     return (
         <span id="reviews-span">
+            <p>Do you recommend this place?</p>
+            <button onClick={handleClick}>Add a Review!</button>
             <h1>Reviews:</h1>
             {reviewsArray?.map((review) => {
                 if (sessionState.user && review.placeId == placeId) {
@@ -78,8 +80,7 @@ const PlaceReviews = () => {
                     )
                 }
             })}
-            <p>Do you recommend this place?</p>
-            <button onClick={handleClick}>Add a Review!</button>
+
         </span>
     )
 }
