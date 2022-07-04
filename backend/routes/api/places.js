@@ -28,6 +28,7 @@ const validatePlace = [
     check('address')
         .exists({ checkFalsy: true })
         .isLength({ min: 3 })
+        .withMessage('Please provide an Address between 5 and 250 characters.')
         .isLength({ max: 250 })
         .withMessage('Please provide an Address between 5 and 250 characters.')
         .custom(value => {
@@ -43,10 +44,16 @@ const validatePlace = [
     check('type')
         .exists({ checkFalsy: true })
         .withMessage('Please provide a Place Type.'),
-    // check('imageURL')
-    //     .isURL()
-    //     .withMessage('Please provide an image link (jpg/jpeg format only).'),
-    // handleValidationErrors
+    check('imageURL')
+        .isURL()
+        .withMessage('Please provide an image link')
+        .custom(imageURL => {
+            if (imageURL.includes('.png') || imageURL.includes('.jpg')) {
+                return true;
+            }
+            throw new Error('Please use a link to a .jpg or .png')
+        }),
+    handleValidationErrors
 ]
 
 
