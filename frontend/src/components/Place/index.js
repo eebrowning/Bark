@@ -45,7 +45,7 @@ const Place = () => {
                     <span >
                         <img id={'place-image'} height={'100px'} width={'100px'} src={place.imageURL} alt="alt"></img>
                         <span id={'place-details'}>
-                            <div idi={'place-name'} className={`name-${place.id}`}>
+                            <div id={'place-name'} className={`name-${place.id}`}>
                                 <h2 >{place.name}</h2>
                             </div>
                             <div id={`place-address`}>

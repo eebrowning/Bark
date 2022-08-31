@@ -2,7 +2,7 @@
     /* background-color: rgb(143, 53, 53); */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: flex-start; */
     align-items: center;
 }
 
@@ -10,25 +10,34 @@
     /* border: 1px red solid; */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
-    width: 85%;
+    width: 100%;
     height: 60%;
+    max-width: 1250px;
+    min-width: 1080px;
     /* background-color: rgb(157, 147, 147); */
-
+    padding: 0;
 }
 
 .place-card {
     border: 1px rgb(235, 233, 233) solid;
     border-radius: 4px;
     width: 45%;
-    height: 200px;
+    height: 208px;
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    /* justify-content: left; */
     align-items: center;
     margin-top: 10px;
 
+}
+
+.place-card-content {
+
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .place-card:hover {
@@ -37,37 +46,46 @@
 }
 
 .place-card p {
-    padding-left: 20px;
+    padding-left: 15px;
 }
 
 .place-card h2 {
     border-radius: 0;
-    height: 50px;
-    text-align: center;
-    border-bottom: 1px solid gray;
+    height: 30px;
+    /* text-align: center; */
+    /* border-bottom: 1px solid gray; */
     padding-bottom: 10px;
+    padding-left: 15px;
+    /* padding-top: 5px; */
     margin-bottom: 0;
+    font-size: 20px;
 }
 
 .place-card>img {
-    height: 200px;
+    height: 100%;
     width: 200px;
+    object-fit: cover;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+
 }
 
 #banner-box {
     margin-bottom: 0;
     width: 100%;
-    height: auto;
+    max-height: 680px;
     margin: 0;
 }
 
 #banner-image {
     width: 100%;
-    height: 100%;
+    height: 680px;
     max-width: 100%;
-    height: auto;
+    /* height: auto;
     width: auto\9;
-    height: fit-content;
+    height: fit-content; */
+    object-fit: cover;
+
 }
 
 
@@ -88,4 +106,13 @@
     justify-content: center;
     margin-top: 0;
     padding-top: 0;
+}
+
+#next-review {
+    font-size: 1.85rem;
+    font-weight: bolder;
+    padding-top: 45px;
+    padding-bottom: 25px;
+    word-spacing: -2px;
+
 }
