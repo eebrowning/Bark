@@ -57,12 +57,14 @@ const Places = () => {
             </span>
             {/* <div id='sub-banner-text'><h2>Places for your Pup</h2></div> */}
             {!placesArr.length && <span>No places available right now.</span>}
+            <div id='next-review'>Your Next Review Awaits</div>
             <ul className="place-list" >
                 {placesArr?.map((place) => (
                     <span key={place.id} id={`place-box-${place.id}`} className={'place-card'} onClick={handleClick}>
-                        <img height={'100px'} width={'100px'} src={place.imageURL} alt="alt" id={`place-img-${place.id}`}></img>
-                        <div id={`place-div-${place.id}`}>
+                        <img src={place.imageURL} alt="alt" id={`place-img-${place.id}`}></img>
+                        <div className='place-card-content' id={`place-div-${place.id}`}>
                             <h2 id={`place-h2-${place.id}`} onClick={handleClick}>{place.name}</h2>
+                            <p>Do you recommend this business?</p>
                             {/* <h6 id={`avgrating-${place.id}`}>{place.avgRating}</h6> */}
                             <p id={`place-p-${place.id}`}>{place.type}</p>
                         </div>
