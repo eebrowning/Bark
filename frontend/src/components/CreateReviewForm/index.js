@@ -52,13 +52,37 @@ const CreateReviewForm = () => {
         return createdReview;
 
     }
-    return (
+    if (place) return (
         <span id="reviews-span">
             <form id="review-form" onSubmit={handleSubmit}>
                 <h1>How'd it go with the doggo at {place.name}?</h1>
                 <ul>
                     {errors.length > 0 && errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>
+                <label>Rating</label>
+                {/* <select
+                    required
+                    name='rating'
+                    placeholder="Rating"
+                    value={rating}
+                    onChange={e => setRating(e.target.value)}
+                >
+                    <option hidden disabled='disabled'></option>
+                    <option >1</option>
+                    <option >2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+
+                </select> */}
+
+                <div id="review-rating">
+                    <input type="radio" name="rating" value={5} id="5" onClick={e => setRating(e.target.value)} /><label for="5">☆</label>
+                    <input type="radio" name="rating" value={4} id="4" onClick={e => setRating(e.target.value)} /><label for="4">☆</label>
+                    <input type="radio" name="rating" value={3} id="3" onClick={e => setRating(e.target.value)} /><label for="3">☆</label>
+                    <input type="radio" name="rating" value={2} id="2" onClick={e => setRating(e.target.value)} /><label for="2">☆</label>
+                    <input type="radio" name="rating" value={1} id="1" onClick={e => setRating(e.target.value)} /><label for="1">☆</label>
+                </div>
                 <label>Title</label>
                 <input
                     required
@@ -83,22 +107,6 @@ const CreateReviewForm = () => {
                     value={imageURL}
                     onChange={e => setImageURL(e.target.value)}
                 /> */}
-                <label>Rating</label>
-                <select
-                    required
-                    name='rating'
-                    placeholder="Rating"
-                    value={rating}
-                    onChange={e => setRating(e.target.value)}
-                >
-                    <option hidden disabled='disabled'></option>
-                    <option >1</option>
-                    <option >2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-
-                </select>
 
                 <button id={'submit-review'}>Submit Review</button>
             </form>

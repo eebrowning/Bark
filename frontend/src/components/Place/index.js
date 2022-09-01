@@ -18,6 +18,7 @@ const Place = () => {
     // console.log(sessionState, 'this is the state of the session, shoudl have user')
 
     const place = useSelector((state) => state.placesState[placeId]);
+    const reviewsArr = useSelector((state) => Object.values(state.reviewsState));
 
     useEffect(() => {
         dispatch(thunkGetPlace(placeId));// keeps place on refresh
@@ -37,9 +38,34 @@ const Place = () => {
         history.push(`/places/${placeId}/edit`);
         // dispatch(thunkUpdatePlace(place)); NO! dispatch will go on submit of edit form!
     }
+
+    const getAvgRating = (placeId) => {
+
+        let placeReviews = reviewsArr.filter(review => review.placeId === placeId);
+
+        let placeTotalRating = 0;
+        placeReviews.forEach((review) => placeTotalRating += review.rating)
+        let placeAvgRating = placeTotalRating / placeReviews.length;
+        return placeAvgRating;
+    }
+    const getNumReviews = (placeId) => {
+
+        let placeReviews = reviewsArr.filter(review => review.placeId === placeId);
+
+        return placeReviews.length
+    }
+
+
+    let avgRating;
+    let numReviews;
     if (!place) return null;
     return (
         <div id={'place-view'}>
+            <div style={{ display: 'none' }}>
+                {avgRating = Math.floor(getAvgRating(place.id))}
+                {avgRating >= 0 ? null : avgRating = 0}
+                {numReviews = getNumReviews(place.id)}
+            </div>
             {place && (
                 <div id={`place-box`}>
                     <span >
@@ -48,12 +74,22 @@ const Place = () => {
                             <div id={'place-name'} className={`name-${place.id}`}>
                                 <h2 >{place.name}</h2>
                             </div>
-                            <div id={`place-address`}>
-                                <h2 >{place.address}</h2>
+                            <div className='avg-rating-pair place'>
+                                <p className="rating-tag" id={`place-avg-${place.id}`}>{numReviews} reviews</p>
+                                <div className='double-star-box place'>
+                                    <>
+                                        <div className="blank-star-box place" id={`avg-rating-${place.id}`}>  {[...Array(5)].map(star => (<div className="blank-star place">☆</div>))}</div>
+                                        <div className="review-star-box place" id={`avg-rating-${place.id}`}>  {avgRating ? [...Array(avgRating)].map(star => (<div className="review-star place">☆</div>)) : null}</div>
+                                    </>
+                                </div>
                             </div>
                             <div id={`place-type`}>
                                 <h2 >{place.type}</h2>
                             </div>
+                            <div id={`place-address`}>
+                                <h2 >{place.address}</h2>
+                            </div>
+
                         </span>
 
                         {(sessionState.user && sessionState.user.id === place.userId) && (

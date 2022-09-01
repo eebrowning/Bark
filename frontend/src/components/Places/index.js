@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
-import { thunkGetAllPlaces, thunkUpdatePlace } from "../../store/place";
+import { thunkGetAllPlaces } from "../../store/place";
 import { thunkGetAllReviews } from "../../store/review";
 import "./index.css"
 
@@ -16,28 +16,21 @@ const Places = () => {
         console.log("sent dispatch to thunkGetAllPlaces")
     }, [dispatch])
 
-    // useEffect(() => {
-    //     console.log("sent dispatch to thunkGetAllPlaces")
-    // }, [])
+
     const placesArr = useSelector((state) => Object.values(state.placesState));
     console.log(placesArr, 'places array????')
     const reviewsArr = useSelector((state) => Object.values(state.reviewsState));
     //iterate through placesArr and PUT the average rating for each.
 
+    const getAvgRating = (placeId) => {
 
+        let placeReviews = reviewsArr.filter(review => review.placeId === placeId);
 
-
-    //query for reviews with placeId
-    console.log(reviewsArr, 'reviews ARRAY')
-    // reviewsArr.reduce((acc, sum)=>{}); /length
-    //selector for reviews
-
-
-    // for (let placeId in placesArr) {
-    //     console.log(placesArr[placeId])
-    //     placesArr[placeId].avgRating = 1;
-    //     dispatch(thunkUpdatePlace(placesArr[placeId]));
-    // }
+        let placeTotalRating = 0;
+        placeReviews.forEach((review) => placeTotalRating += review.rating)
+        let placeAvgRating = placeTotalRating / placeReviews.length;
+        return placeAvgRating;
+    }
 
     const handleClick = ((e) => {
         e.preventDefault();
@@ -45,7 +38,7 @@ const Places = () => {
 
         history.push(`/places/${placeId}`)
     })
-
+    let avgRating;
     return (
         <div id={'places-view'}>
             <span id='banner-box'>
@@ -61,12 +54,27 @@ const Places = () => {
             <ul className="place-list" >
                 {placesArr?.map((place) => (
                     <span key={place.id} id={`place-box-${place.id}`} className={'place-card'} onClick={handleClick}>
+                        <div style={{ display: 'none' }}>
+                            {avgRating = Math.floor(getAvgRating(place.id))}
+                            {avgRating >= 0 ? null : avgRating = 0}
+                        </div>
+
+
                         <img src={place.imageURL} alt="alt" id={`place-img-${place.id}`}></img>
                         <div className='place-card-content' id={`place-div-${place.id}`}>
                             <h2 id={`place-h2-${place.id}`} onClick={handleClick}>{place.name}</h2>
-                            <p>Do you recommend this business?</p>
-                            {/* <h6 id={`avgrating-${place.id}`}>{place.avgRating}</h6> */}
-                            <p id={`place-p-${place.id}`}>{place.type}</p>
+                            <p id={`place-p-${place.id}`}>Do you recommend this business?</p>
+                            <div id='avg-rating-pair'>
+
+                                <p id={`place-avg-${place.id}`}>Average Review:</p>
+                                <div id='double-star-box'>
+                                    <>
+                                        <div className="blank-star-box" id={`avg-rating-${place.id}`}>  {[...Array(5)].map(star => (<div className="blank-star">☆</div>))}</div>
+                                        <div className="review-star-box" id={`avg-rating-${place.id}`}>  {avgRating ? [...Array(avgRating)].map(star => (<div className="review-star">☆</div>)) : null}</div>
+                                    </>
+
+                                </div>
+                            </div>
                         </div>
                     </span>
                 ))}

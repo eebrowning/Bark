@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { thunkGetPlace } from "../../store/place"
-import { thunkCreateReview, thunkDeleteReview, thunkGetAllReviews } from '../../store/review'
+import { thunkDeleteReview } from '../../store/review'
 import './reviews.css'
 
 const PlaceReviews = () => {
@@ -59,7 +59,11 @@ const PlaceReviews = () => {
                         <span id='review-card' key={review.id}>
                             <span id={`place-box-${review.id}`} >
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
-                                <div id={`rating-${review.id}`}>Rating: {review.rating}/5</div>
+                                <div id='double-star-box'>
+                                    <div className="blank-star-box" id={`rating-${review.id}`}>  {[...Array(5)].map(star => (<div className="blank-star">☆</div>))}</div>
+                                    <div className="review-star-box" id={`rating-${review.id}`}>  {[...Array(+review.rating)].map(star => (<div className="review-star">☆</div>))}</div>
+
+                                </div>
                                 <p>{review.body}</p>
 
                             </span>
@@ -79,7 +83,7 @@ const PlaceReviews = () => {
                             <span id={`place-box-${review.id}`} >
                                 <h2 id={`place-${review.id}`} >{review.title}</h2>
                                 <p>{review.body}</p>
-                                <div id={`rating-${review.id}`}>Rating: {review.rating}/5</div>
+                                <div className="review-star-box" id={`rating-${review.id}`}>  {[...Array(+review.rating)].map(star => (<div className="review-star">☆</div>))}</div>
                             </span>
 
                         </span>
