@@ -3,9 +3,6 @@
 }
 
 
-
-
-
 #place-box {
     display: flex;
     width: 100%;
@@ -19,6 +16,7 @@
 #place-image {
     /* margin-top: 75px; */
     width: 50%;
+    min-width: 600px;
     height: 425px;
     object-fit: cover;
 }
@@ -36,8 +34,10 @@
 }
 
 
-#place-type,
+
 #place-address {
+    display: flex;
+    align-items: center;
     color: #48C2F9;
     padding: 0;
     margin: 0;
@@ -47,7 +47,17 @@
 
 }
 
+#place-type {
+    display: flex;
+    align-items: center;
+    height: 30px;
+    color: #48C2F9;
+    text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
+    font-size: 14px;
+}
+
 #place-name {
+    height: 80px;
     font-size: 25px;
     color: white;
     text-shadow: -.5px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
@@ -72,4 +82,90 @@
     background: #00000000;
     width: 150px;
 
+}
+
+.review-star-box.place,
+.blank-star-box.place {
+    display: flex;
+}
+
+.review-star-box.place {
+    margin-left: -180px;
+}
+
+.blank-star-box {
+    /* opacity: .3; */
+}
+
+.review-star.place {
+    content: "\2605";
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: white;
+    z-index: 1;
+    background-color: #48C2F9;
+    ;
+    border: 2px solid whitesmoke;
+    border-radius: 7px;
+
+    font-size: 16px;
+
+
+}
+
+.blank-star.place {
+    position: relative;
+
+    content: "\2605";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: white;
+    background-color: black;
+    opacity: 40%;
+    border: 2px solid whitesmoke;
+    border-radius: 7px;
+    /* background-color: red; */
+    font-size: 16px;
+
+
+}
+
+.blank-star::before,
+.review-star::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 1;
+
+}
+
+.avg-rating-pair.place {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+
+    height: 40px;
+    align-items: center;
+    width: 300px;
+}
+
+.rating-tag {
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -.5px black;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.double-star-box.place {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    max-height: 40px;
+    /* padding-left: 15px; */
+    /* border: 1px solid gray */
 }
