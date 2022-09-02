@@ -9,7 +9,7 @@
 }
 
 #review-card {
-    width: 40%;
+    width: 100%;
     border: 1px gray solid;
     padding: 15px;
 }
@@ -100,4 +100,16 @@
     max-height: 40px;
     padding-left: 15px;
     /* border: 1px solid gray */
+}
+
+
+.user-name {
+    color: black;
+    /* border: 1px solid red; */
+}
+
+.user-img {
+    height: 50px;
+    width: 50px;
+    ;
 }

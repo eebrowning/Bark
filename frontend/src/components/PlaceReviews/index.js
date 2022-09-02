@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { thunkGetPlace } from "../../store/place"
-import { thunkDeleteReview } from '../../store/review'
+import { thunkDeleteReview, thunkGetAllReviews } from '../../store/review'
+
 import './reviews.css'
 
 const PlaceReviews = () => {
@@ -14,7 +15,7 @@ const PlaceReviews = () => {
 
 
     const user = useSelector(state => state.session);
-    console.log(user, 'this is the user from useSeletor')
+    // console.log(user, 'this is the user from useSeletor')
     const reviewsArray = useSelector(state => Object.values(state.reviewsState))
     // console.log(reviewsArray, "reviews state array, PlaceReviews");
 
@@ -44,6 +45,34 @@ const PlaceReviews = () => {
         return;
     }
 
+    const [usersArr, setUsersArr] = useState([]);
+    // console.log('>>>>>>>>>>>>>> usersArr', usersArr)
+    const matchUser = (userArr, id) => {//swap user_id for username
+        // console.log('>>>>>>>>>>>>>> passed id: ', id)
+        // console.log('>>>>>>>>>>>>>> usersArr', usersArr)
+
+        // console.log('>>>>>>>>>>>>>> userName: ', userArr?.find(user => user.id === id)?.username)
+        return userArr?.find(user => user.id === id)?.username
+    }
+    let userReview;
+    reviewsArray.forEach(review => {
+        if (user && review.user_id == user.id) {
+            userReview = review
+        }
+    })
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await fetch('/api/users/');
+            const responseData = await response.json();
+            setUsersArr([...Object.values(responseData)]);
+        }
+        fetchData();
+        // console.log(usersArr, 'usersArr')
+        dispatch(thunkGetAllReviews())
+    }, [dispatch])
+
+
     return (
 
         <span id="reviews-span">
@@ -58,7 +87,10 @@ const PlaceReviews = () => {
                     return (
                         <span id='review-card' key={review.id}>
                             <span id={`place-box-${review.id}`} >
-                                <h2 id={`place-${review.id}`} >{review.title}</h2>
+                                <img className="user-img" src='https://www.nicepng.com/png/full/128-1280406_user-icon-png.png' />
+                                <h2 className='user-name'>{matchUser(usersArr, review.userId)}</h2>
+
+                                <h3 id={`place-${review.id}`} >{review.title}</h3>
                                 <div id='double-star-box'>
                                     <div className="blank-star-box" id={`rating-${review.id}`}>  {[...Array(5)].map(star => (<div className="blank-star">☆</div>))}</div>
                                     <div className="review-star-box" id={`rating-${review.id}`}>  {[...Array(+review.rating)].map(star => (<div className="review-star">☆</div>))}</div>
@@ -81,9 +113,17 @@ const PlaceReviews = () => {
                     return (
                         <span id='review-card' key={review.id}>
                             <span id={`place-box-${review.id}`} >
-                                <h2 id={`place-${review.id}`} >{review.title}</h2>
+                                <img className="user-img" src='https://www.nicepng.com/png/full/128-1280406_user-icon-png.png' />
+                                <h2 className='user-name'>{matchUser(usersArr, review.userId)}</h2>
+
+                                <h3 id={`place-${review.id}`} >{review.title}</h3>
+                                <div id='double-star-box'>
+                                    <div className="blank-star-box" id={`rating-${review.id}`}>  {[...Array(5)].map(star => (<div className="blank-star">☆</div>))}</div>
+                                    <div className="review-star-box" id={`rating-${review.id}`}>  {[...Array(+review.rating)].map(star => (<div className="review-star">☆</div>))}</div>
+
+                                </div>
                                 <p>{review.body}</p>
-                                <div className="review-star-box" id={`rating-${review.id}`}>  {[...Array(+review.rating)].map(star => (<div className="review-star">☆</div>))}</div>
+
                             </span>
 
                         </span>
