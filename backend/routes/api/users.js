@@ -42,5 +42,12 @@ router.post(
     }),
 );
 
+//GET users
+router.get('/', asyncHandler(async (req, res) => {
+    console.log(' in GET users')
+    const users = await User.findAll();
+    return res.json(users);
+}));
+
 
 module.exports = router;
