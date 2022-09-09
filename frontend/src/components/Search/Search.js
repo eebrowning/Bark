@@ -34,14 +34,17 @@ const Search = () => {
           filteredLocation
         }
       />
-      <div className='results-container'>
-        {enhancedSearch.map(result => (
-          <Link key={result.id} to={`/locations/${result.id}`}>
-            <div className='individual-result'>
-              <p className='search-name'>{result.name}</p>
-            </div>
-          </Link>
-        ))}
+      <div className='results-container-wrapper'>
+
+        <div className='results-container'>
+          {enhancedSearch.map(result => (
+            <Link key={result.id} to={`/locations/${result.id}`}>
+              <div className='individual-result'>
+                <p className='search-name'>{result.name}, {result.type}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </>
   )

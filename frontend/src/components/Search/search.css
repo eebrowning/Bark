@@ -6,15 +6,26 @@
     text-align: center;
 }
 
+.results-container-wrapper {
+    display: flex;
+    width: 70%;
+    position: absolute;
+    justify-content: center;
+    ;
+}
+
 .results-container {
-    /* width: 100%; */
     background-color: white;
     z-index: 2;
-    position: absolute;
-    top: 60px;
-    left: 285px;
+    /* position: relative; */
+    /* top: 60px; */
+    width: 40%;
+    /* max-width: 450px; */
 }
 
 .individual-result {
     padding: 10px;
+    border-bottom: 1px solid white;
+    background-color: whitesmoke;
+    text-shadow: none;
 }
