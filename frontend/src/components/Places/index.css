@@ -95,6 +95,7 @@
     justify-content: space-between;
     align-items: center;
     color: white;
+    text-shadow: -.75px 0 black, 0 .5px black, .5px 0 black, 0 -.5px black;
     font-weight: bolder;
     position: relative;
     /* bottom: 200px; */
