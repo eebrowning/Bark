@@ -85,17 +85,26 @@
     width: auto\9;
     height: fit-content; */
     object-fit: cover;
-
+    /* position: absolute; */
 }
 
 
 #over-banner-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     color: white;
     font-weight: bolder;
     position: relative;
-    bottom: 200px;
+    /* bottom: 200px; */
+    margin-top: -680px;
+    margin-bottom: 680px;
+    height: 680px;
     left: 25px;
     text-align: center;
+    padding: 60px;
+    box-sizing: border-box;
 }
 
 
@@ -115,4 +124,9 @@
     padding-bottom: 25px;
     word-spacing: -2px;
 
+}
+
+#home-search {
+    margin-bottom: 30px;
+    width: 80%;
 }

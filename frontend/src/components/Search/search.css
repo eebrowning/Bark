@@ -1,0 +1,20 @@
+.locationSearch {
+    border-radius: 20px;
+    height: 40px;
+    width: 45%;
+    border: none;
+    text-align: center;
+}
+
+.results-container {
+    /* width: 100%; */
+    background-color: white;
+    z-index: 2;
+    position: absolute;
+    top: 60px;
+    left: 285px;
+}
+
+.individual-result {
+    padding: 10px;
+}

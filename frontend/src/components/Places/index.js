@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import { thunkGetAllPlaces } from "../../store/place";
 import { thunkGetAllReviews } from "../../store/review";
+import Search from "../Search/Search";
 import "./index.css"
+
+
 
 const Places = () => {
     const history = useHistory();
@@ -45,7 +48,14 @@ const Places = () => {
                 <img id='banner-image' src='http://www.newsilike.in/wp-content/uploads/2016/10/Dog-Parks-India.jpg' />
                 <div id='over-banner-image'>
                     <h2>Bark has all the fun places for you and your pup!</h2>
-                    <h3>Scroll down to explore</h3>
+                    <div id='home-search'>
+                        <h3>Scroll down to explore</h3>
+                        <div style={{ paddingBottom: '20px', color: '#48C2F9' }}>
+                            or
+                        </div>
+                        <Search />
+                    </div>
+
                 </div>
             </span>
             {/* <div id='sub-banner-text'><h2>Places for your Pup</h2></div> */}
