@@ -38,7 +38,7 @@ const Search = () => {
 
         <div className='results-container'>
           {enhancedSearch.map(result => (
-            <Link key={result.id} to={`/locations/${result.id}`}>
+            <Link key={result.id} to={`/places/${result.id}`}>
               <div className='individual-result'>
                 <p className='search-name'>{result.name}, {result.type}</p>
               </div>
